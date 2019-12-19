@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a8e0af0-d489-4aee-82c1-4cf5fbe8c9f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/GStore.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/GStore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/bplustree/fileUtils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/storage/bplustree/fileUtils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/btree/BTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/storage/btree/BTree.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/btree/BTreeNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/storage/btree/BTreeNode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/btree/DataFileIO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/storage/btree/DataFileIO.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/btree/KeyValueStore.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/storage/btree/KeyValueStore.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/btree/bstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/storage/btree/bstore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/clientUtils/clientUtils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/clientUtils/clientUtils.go" afterDir="false" />
-    </list>
+    <list default="true" id="8a8e0af0-d489-4aee-82c1-4cf5fbe8c9f6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
