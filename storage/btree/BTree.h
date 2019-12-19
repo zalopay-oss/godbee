@@ -116,6 +116,7 @@ public:
     void setDeletedValsPos(queue<uint64_t> q) {
         this->deletedValsPos = q;
     }
+    
     ~BTree();
 friend class BTreeNode;
 };

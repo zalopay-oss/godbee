@@ -13,7 +13,7 @@ struct BTreeStore;
 
 using namespace std;
 
-const string configFileName = "./configs/.configB";
+const string configFileName = ".configB";
 
 KV* getEntry(BTree* tree, int idx);
 V readValueInFile(BTree* tree, uint64_t valuePos, FILE* f);
@@ -30,6 +30,8 @@ void flushDeletedNodesFile(BTree* tree);
 void flushDeletedValsFile(BTree* tree);
 void readDeletedNodesPos(BTree* tree);
 void readDeletedValsPos(BTree* tree);
+void clearDataDBFile(BTree* tree);
+void clearDBFile(BTree* tree);
 void clearDeletedNodesFile(BTree* tree);
 void clearDeletedValsFile(BTree* tree);
 string getDBFileNameInConfig();
