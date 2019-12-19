@@ -36,7 +36,5 @@ public:
     BTree* getDatabase(){
         return this->database;
     }
-    ~KeyValueStoreDisk() {
-        delete database;
-    }
+    ~KeyValueStoreDisk();
 };
