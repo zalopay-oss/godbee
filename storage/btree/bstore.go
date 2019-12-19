@@ -3,6 +3,7 @@ package btree
 /*
 #include "KeyValueStoreGC.h"
 #include <stdlib.h>
+#cgo CXXFLAGS: -g -std=c++17 -w -pthread
 */
 import (
 	"C"

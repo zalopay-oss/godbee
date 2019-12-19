@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	service "github.com/1612898/zpkvservice/service/api/proto"
+	log "github.com/sirupsen/logrus"
 	"strings"
 )
 
@@ -78,6 +79,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 				fmt.Println("(error) ERR wrong number of arguments for 'connect' command")
 			} else {
 				req := service.SetKVRequest{Key: commands[1], Value: commands[2]}
+				log.Info("SET: "+req.GetKey()+": "+req.GetValue())
 				res,err := cli.SetKV(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
