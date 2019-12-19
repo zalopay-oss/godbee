@@ -31,7 +31,6 @@ BTreeNode::BTreeNode(int maxDegree, int keySize) {
     T = maxDegree;
     bufferKeySize = keySize;
     arrChild = new uint64_t[2*T];
-    // cout << "CRASH HERE" << endl;
     valuePos = new uint64_t[2*T-1];
     arrEntry = new K[2*T-1];
     int i = 0;
@@ -459,39 +458,6 @@ void BTreeNode::mergeNodes(BTree* tree, int idx, FILE* file) {
 
     return;
 }
-
-// void BTreeNode::traverse() {
-//     int i;
-//     for(i = 0; i < nEntry; i++) {
-//         if(this->flag != LEAF) {
-//             arrChild[i]->traverse();
-//         }
-//         cout << " " << arrEntry[i]->getKey();
-//     }
-//     if(!leaf) {
-//         arrChild[i]->traverse();
-//     }
-// }
-
-// void BTreeNode::clearNode() {
-//     int i;
-//     // cout << "RECURSIVE" << endl;
-//     // cout << nEntry << endl;
-//     for(i = 0; i < nEntry; i++) {
-//         //cout << "CLEARRRR" << endl;
-//         if(!leaf) {
-//             arrChild[i]->clearNode();
-//         }
-//         //printf("%s ", arrEntry[i]->getKey());
-//         if(arrEntry[i] != NULL)
-//             clearEntry(arrEntry[i]);
-//         delete arrChild[i];
-//     }
-//     if(arrChild[i] != NULL) {
-//         arrChild[i]->clearNode();
-//         delete arrChild[i];
-//     }
-// }
 
 V BTreeNode::search(BTree* tree, K k, FILE* file) {
     int i = 0;

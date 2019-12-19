@@ -4,6 +4,7 @@ import (
 	"context"
 	api "github.com/1612898/zpkvservice/service/api/proto"
 	"github.com/1612898/zpkvservice/utils/serverUtils"
+	log "github.com/sirupsen/logrus"
 )
 
 type ZPKVServiceImpl struct {
@@ -66,6 +67,7 @@ func (server *ZPKVServiceImpl) GetKV(ctx context.Context, req *api.GetKVRequest)
 }
 
 func (server *ZPKVServiceImpl) 	SetKV(ctx context.Context, req *api.SetKVRequest) (*api.MessageResponse, error) {
+	log.Info("SET: "+req.GetKey()+": "+req.GetValue())
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil,err

@@ -15,7 +15,9 @@ BTree::BTree() {
     valueSize = treeMetaData->valueSize;
     strcpy(deletedNodesFileName, treeMetaData->deletedNodesFileName);
     strcpy(deletedValuesFileName, treeMetaData->deletedValuesFileName);
+cout<<1<<endl;
     readDeletedNodesPos(this);
+cout<<1<<endl;
     readDeletedValsPos(this);
     fileManager = new FileManager(dbFileName);
     delete treeMetaData;
@@ -187,4 +189,5 @@ BTree::~BTree() {
         delete root;
         root = NULL;
     }
+    cout<<"DONE DESTRUCTOR"<<endl;
 }

@@ -3,11 +3,9 @@
 
 mutex mFiles;
 condition_variable cv;
-map<thread::id,int> tests;
 
 FILE* getpFile(MetaData * metaData){
-    tests.insert_or_assign(this_thread::get_id(),1);
-    std::unique_lock<std::mutex> lk(mFiles);
+    unique_lock<mutex> lk(mFiles);
     while(metaData->files.size() == 0){
         cv.wait(lk);
     }
@@ -18,7 +16,7 @@ FILE* getpFile(MetaData * metaData){
 
 void returnpFile(MetaData * metaData, FILE* p){
     {
-        std::lock_guard<std::mutex> lk(mFiles);
+        lock_guard<mutex> lk(mFiles);
         metaData->files.push(p);
     }
     cv.notify_one();

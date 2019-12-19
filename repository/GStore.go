@@ -3,6 +3,7 @@ package repository
 import (
 	"github.com/1612898/zpkvservice/storage/bplustree"
 	"github.com/1612898/zpkvservice/storage/btree"
+	log "github.com/sirupsen/logrus"
 )
 
 type GStore interface {
@@ -28,8 +29,10 @@ func Free() {
 }
 
 func Init() {
-	btree.GetInstance()
 	bplustree.GetInstance()
+	log.Info("B+ tree")
+	btree.GetInstance()
+	log.Info("B tree")
 }
 
 

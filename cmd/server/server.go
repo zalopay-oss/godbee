@@ -16,6 +16,12 @@ import (
 )
 
 func main() {
+	path:="./data"
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.Mkdir(path, 0777)
+	}
+
+
 	config := &configs.ServiceConfig{}
 
 	_ = configs.LoadConfig()

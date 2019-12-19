@@ -111,7 +111,6 @@ BTreeNode* READ_NODE(BTree* b, BTreeNode* node, uint64_t p, FILE* file) {
     uint16_t pageSize = b->getPageSize();
     if(file == 0x0 || file == NULL) {
         std::thread::id tid = this_thread::get_id();
-        cout << "GOT NULL FROM " << tid << endl;
         file = fopen(dbFileName.c_str(), "rb+");
     }
 
@@ -175,7 +174,6 @@ void getConfigValues(BTreeStore* treeMetaData) {
             treeMetaData->T = stoi(val);
         }
         else if(configName == "DB_FILE_NAME") {
-            cout << val << endl;
             strcpy(treeMetaData->dbFileName, val.c_str());
         }
     }
@@ -200,10 +198,6 @@ void WRITE_HEADER_INIT() {
     BTreeStore* treeMetaData = new BTreeStore();
     getConfigValues(treeMetaData);
 
-    cout << treeMetaData->bufferSize << endl;
-    cout << treeMetaData->pageSize << endl;
-    cout << treeMetaData->valueSize << endl;
-    
     treeMetaData->rootPos = 0;
     treeMetaData->nextPosNode = treeMetaData->rootPos;
     treeMetaData->nextPosNodeValue = (treeMetaData->rootPos + 1) << 2;
@@ -287,7 +281,6 @@ void flushDeletedNodesFile(BTree* tree) {
     out.open(deletedNodesFileNameTmp);
     out << deletedNodesPos.size() << endl;
     while(!deletedNodesPos.empty()){
-//        cout << "FLUSH... " << deletedNodesPos.front() << endl;
         out << deletedNodesPos.front() << endl;
         deletedNodesPos.pop();
     }
@@ -302,7 +295,6 @@ void flushDeletedValsFile(BTree* tree) {
     out.open(deletedValsFileNameTmp);
     out << deletedValsPos.size() << endl;
     while(!deletedValsPos.empty()){
-//        cout << "FLUSH... " << deletedValsPos.front() << endl;
         out << deletedValsPos.front() << endl;
         deletedValsPos.pop();
     }
@@ -354,7 +346,6 @@ void readDeletedValsPos(BTree* tree) {
 
 bool checkFileDBExist() {
     string dbFileName = getDBFileNameInConfig();
-    cout << "FILE NAME: " << dbFileName << endl;
     ifstream ifile(dbFileName);
     return ifile.good();
 }
