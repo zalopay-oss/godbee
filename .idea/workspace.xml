@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a8e0af0-d489-4aee-82c1-4cf5fbe8c9f6" name="Default Changelist" comment="" />
+    <list default="true" id="8a8e0af0-d489-4aee-82c1-4cf5fbe8c9f6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -254,12 +256,12 @@
       <screen x="0" y="372" width="3840" height="1053" />
     </state>
     <state x="705" y="154" width="500" height="778" key="refactoring.ChangeSignatureDialog/0.372.3840.1053@0.372.3840.1053" timestamp="1576144806170" />
-    <state x="3209" y="583" width="672" height="696" key="search.everywhere.popup" timestamp="1576730372350">
+    <state x="3209" y="583" width="672" height="696" key="search.everywhere.popup" timestamp="1576736100267">
       <screen x="1920" y="345" width="1920" height="1080" />
     </state>
     <state x="2578" y="604" width="672" height="678" key="search.everywhere.popup/0.372.3840.1053@0.372.3840.1053" timestamp="1576641864856" />
     <state x="1289" y="528" width="698" height="457" key="search.everywhere.popup/1920.345.1920.1080/0.372.1920.708@0.372.1920.708" timestamp="1576727779171" />
-    <state x="3209" y="583" width="672" height="696" key="search.everywhere.popup/1920.345.1920.1080/0.372.1920.708@1920.345.1920.1080" timestamp="1576730372350" />
+    <state x="3209" y="583" width="672" height="696" key="search.everywhere.popup/1920.345.1920.1080/0.372.1920.708@1920.345.1920.1080" timestamp="1576736100267" />
     <state x="1312" y="259" width="672" height="679" key="search.everywhere.popup/1920.345.1920.1080/70.27.1850.1053@70.27.1850.1053" timestamp="1575460348498" />
     <state x="1312" y="259" width="672" height="679" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1576123817452" />
     <state x="343" y="422" width="500" height="187" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1576726229486">
