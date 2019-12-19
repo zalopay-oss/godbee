@@ -15,9 +15,7 @@ BTree::BTree() {
     valueSize = treeMetaData->valueSize;
     strcpy(deletedNodesFileName, treeMetaData->deletedNodesFileName);
     strcpy(deletedValuesFileName, treeMetaData->deletedValuesFileName);
-cout<<1<<endl;
     readDeletedNodesPos(this);
-cout<<1<<endl;
     readDeletedValsPos(this);
     fileManager = new FileManager(dbFileName);
     delete treeMetaData;
@@ -137,14 +135,19 @@ bool BTree::remove(K key) {
         BTreeNode *tmp = root;
         if (root->flag == BTreeNode::LEAF) {
             root = NULL;
+            clearDataDBFile(this);
+            queue<uint64_t> emptyNodesPos;
+            queue<uint64_t> emptyValsPos;
+            swap(deletedNodesPos, emptyNodesPos);
+            swap(deletedValsPos, emptyValsPos);
             clearDeletedNodesFile(this);
             clearDeletedValsFile(this);
         }
         else {
             root = READ_NODE(this, root, root->arrChild[0], file);
             deletedNodesPos.push(tmp->pos);
+            tmp->markDeleted();
         }
-        tmp->markDeleted();
         WRITE_NODE(this, tmp, tmp->getNodePos(), file);
         delete tmp;
     }
@@ -180,14 +183,23 @@ void BTree::updateNextPosNodeValue(FILE* filePtr) {
 
 BTree::~BTree() {
     WRITE_HEADER(this);
-
+    cout << "EXIT" << endl;
+    
     delete fileManager;
 
     if(root != NULL) {
-        flushDeletedNodesFile(this);
-        flushDeletedValsFile(this);
         delete root;
         root = NULL;
+        flushDeletedNodesFile(this);
+        flushDeletedValsFile(this);
+    } else {
+        clearDBFile(this);
     }
-    cout<<"DONE DESTRUCTOR"<<endl;
+    // else {
+    //     queue<uint64_t> emptyNodePos;
+    //     queue<uint64_t> emptyValsPos;
+    //     std::swap(deletedNodesPos, emptyNodePos);
+    //     std::swap(deletedValsPos, emptyValsPos);
+    // }
+    
 }
