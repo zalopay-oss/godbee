@@ -1,0 +1,6 @@
+PAGE_SIZE = 4096
+KEY_SIZE = 35
+VALUE_SIZE = 1024
+DEL_NODE_FILE_NAME = ./data/DeletedNodes
+DEL_VALUE_FILE_NAME = ./data/DeletedValues
+DB_FILE_NAME = ./data/databaseBPlus
