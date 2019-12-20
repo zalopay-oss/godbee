@@ -86,7 +86,6 @@ void BTreeNode::insertNonFull(BTree* tree, KV* entry, FILE* file) {
         }
 
         if(!tree->deletedValsPos.empty()) {
-            cout << "HERRERERER" << endl;
             valuePos[i+1] = tree->deletedValsPos.front();
             tree->deletedValsPos.pop();
         }
