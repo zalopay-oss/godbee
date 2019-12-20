@@ -90,6 +90,11 @@
 
 ### **5. P99**  
 
-<div align="center">
-    <img src="../images/p99.png">
-</div>  
+| Percentile | Storage | Exist | Get | Remove | Set  |
+|------------|---------|-------|-----|--------|------|
+| 50%        | B-Store | 20    | 19  | 88     | 110  |
+|            | B+Store | 21    | 20  | 87     | 110  |
+| 99%        | B-Store | 36    | 35  | 270    | 270  |
+|            | B+Store | 39    | 37  | 250    | 270  |
+| 100%       | B-Store | 71    | 59  | 880    | 1000 |
+|            | B+Store | 77    | 75  | 810    | 1000 |

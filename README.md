@@ -15,11 +15,137 @@ In this project, we use B-Tree and B+Tree data structures to organize and manipu
 ## **Requirements**  
 
 - C++17
-- Golang
+- Golang 1.13.1
 - Locust
-- Docker  
+- Docker Engine - Community 19.03.3  
 
 ## **Methods supported**  
+
+```java
+syntax = "proto3";
+
+package service;
+
+message Status {
+    //code = 1 means success
+    int32 code = 1;
+    string error = 2;
+}
+
+message MessageResponse {
+    Status status = 1;
+}
+
+enum StoreType {
+    BTreeDisk = 0;
+    BPlusTreeDisk = 1;
+}
+
+message ConnectionRequest {
+    StoreType type = 1;
+}
+
+message CloseConnectionRequest {
+}
+
+message GetKVRequest {
+    string key = 1;
+}
+
+message GetKVResponse {
+    Status status = 1;
+    string value = 2;
+}
+
+message SetKVRequest {
+    string key = 1;
+    string value = 2;
+}
+
+message RemoveKVRequest {
+    string key = 1;
+}
+
+message RemoveKVResponse {
+    Status status = 1;
+    bool check = 2;
+}
+
+message ExistKVRequest {
+    string key = 1;
+}
+
+message ExistKVResponse {
+    Status status = 1;
+    bool check = 2;
+}
+
+service KeyValueStoreService {
+    // connect ZP_KV service
+    rpc ConnectZPKV(ConnectionRequest) returns (MessageResponse){}
+
+    // close connection ZP_KV serivce
+    rpc CloseConnectionZPKV(CloseConnectionRequest) returns (MessageResponse){}
+
+    // get key-value connection db
+    rpc GetKV(GetKVRequest) returns (GetKVResponse){}
+
+    // set key-value connection db
+    rpc SetKV(SetKVRequest) returns (MessageResponse){}
+
+    // remove key-value connection db
+    rpc RemoveKV(RemoveKVRequest) returns (RemoveKVResponse){}
+
+    // check key-value exists connection db
+    rpc ExistKV(ExistKVRequest) returns (ExistKVResponse){}
+}
+```  
+
+## **Build**  
+
+```sh
+# clone project
+git clone https://github.com/zalopay-oss/key-value-store-service.git
+```  
+
+## **Run**  
+
+- Make CGO understands C++17
+
+```sh
+# Modify Go enviroment variable
+export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
+```  
+
+- Run server:  
+
+```sh
+cd source
+# Build and run server
+make server
+```  
+
+- Or run docker server:  
+
+```sh
+cd source
+# Build docker image named "zpkv-server"
+sudo docker build -t zpkv-server .
+# Run image
+sudo docker run -it --net="host" zpkv-server
+```
+
+- Run client:  
+
+```sh
+cd source
+# Build and run client
+make client
+```  
+
+## **Test**  
+
+### Test CLI
 
 - **Connect** to B/B+ Storage:
 
@@ -49,48 +175,52 @@ or
 
 > EXIST key
 
-## **Build**  
+Example:  
 
 ```sh
-git clone 
+KVZP > connect B
+OK
+KVZP > SET a a
+OK
+KVZP > GET a
+"a"
+KVZP > EXIST a
+TRUE
+KVZP > DEL a
+OK
+KVZP > GET a
+(nil)
+KVZP > EXIST a
+FALSE
+KVZP > SET b b
+OK
+KVZP > GET b
+"b"
+KVZP > exit
+Bye bye!!
 ```
 
-## **Run**  
-
-- Make CGO understands C++17
+### Run unit tests  
 
 ```sh
-export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
-```  
-
-- Run server:  
-
-```sh
-make server
-```  
-
-- Or run docker server:  
-
-```sh
-sudo docker build -t zpkv-server .
-sudo docker run -it --net="host" zpkv-server
-```
-
-- Run client:  
-
-```sh
-make client
-```  
-
-## **Test**  
-
-```sh
+cd source
 make test
 ```  
 
 ## **Benchmark**  
 
-You can view a benchmark result at [here](docs/benchmark.md)
+You can view benchmark results at [here](docs/benchmark.md).  
+
+P99 overview (miliseconds)
+
+| Percentile | Storage | Exist | Get | Remove | Set  |
+|------------|---------|-------|-----|--------|------|
+| 50%        | B-Store | 20    | 19  | 88     | 110  |
+|            | B+Store | 21    | 20  | 87     | 110  |
+| 99%        | B-Store | 36    | 35  | 270    | 270  |
+|            | B+Store | 39    | 37  | 250    | 270  |
+| 100%       | B-Store | 71    | 59  | 880    | 1000 |
+|            | B+Store | 77    | 75  | 810    | 1000 |
 
 ## **Contribution**  
 
