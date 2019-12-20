@@ -13,7 +13,7 @@ struct BTreeStore;
 
 using namespace std;
 
-const string configFileName = ".configB";
+const string configFileName = "./configs/.configB";
 
 KV* getEntry(BTree* tree, int idx);
 V readValueInFile(BTree* tree, uint64_t valuePos, FILE* f);
