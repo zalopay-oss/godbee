@@ -62,12 +62,6 @@ void BTree::insert(KV* entry) {
     fileManager->giveFilePtrBack(file);
 }
 
-void BTree::traverse() {
-    // if(root != NULL) {
-    //     //root->traverse();
-    //     // cout << "GET BACK LATER" << endl;
-    // }
-}
 
 void BTree::traverseByLevel() {
     FILE* file = fileManager->getFilePtr();
@@ -183,8 +177,7 @@ void BTree::updateNextPosNodeValue(FILE* filePtr) {
 
 BTree::~BTree() {
     WRITE_HEADER(this);
-    cout << "EXIT" << endl;
-    
+
     delete fileManager;
 
     if(root != NULL) {

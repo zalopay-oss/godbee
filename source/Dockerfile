@@ -1,7 +1,7 @@
 FROM golang:latest
 LABEL maintainer="Tran. <tranndc@vng.com.vn>"
 WORKDIR /server
-COPY go.mod go.sum config.yaml ./
+COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
 RUN make build-server

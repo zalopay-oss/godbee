@@ -7,11 +7,11 @@ import (
 	"github.com/1612898/zpkvservice/utils/serverUtils"
 )
 
-type ZPKVServiceImpl struct {
+type ServiceImpl struct {
 	ServiceUtils serverUtils.IServiceUtils
 }
 
-func (server *ZPKVServiceImpl) ConnectZPKV(ctx context.Context, req *api.ConnectionRequest) (*api.MessageResponse, error) {
+func (server *ServiceImpl) Connect(ctx context.Context, req *api.ConnectionRequest) (*api.MessageResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err
@@ -26,7 +26,7 @@ func (server *ZPKVServiceImpl) ConnectZPKV(ctx context.Context, req *api.Connect
 	}
 }
 
-func (server *ZPKVServiceImpl) CloseConnectionZPKV(ctx context.Context, req *api.CloseConnectionRequest) (*api.MessageResponse, error) {
+func (server *ServiceImpl) CloseConnection(ctx context.Context, req *api.CloseConnectionRequest) (*api.MessageResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err
@@ -41,7 +41,7 @@ func (server *ZPKVServiceImpl) CloseConnectionZPKV(ctx context.Context, req *api
 	return &api.MessageResponse{Status: res}, nil
 }
 
-func (server *ZPKVServiceImpl) GetKV(ctx context.Context, req *api.GetKVRequest) (*api.GetKVResponse, error) {
+func (server *ServiceImpl) Get(ctx context.Context, req *api.GetRequest) (*api.GetResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err
@@ -50,7 +50,7 @@ func (server *ZPKVServiceImpl) GetKV(ctx context.Context, req *api.GetKVRequest)
 	store, err := server.ServiceUtils.GetStore(id)
 	if err != nil {
 		status := api.Status{Error: err.Error(), Code: 0}
-		res := api.GetKVResponse{Status: &status, Value: ""}
+		res := api.GetResponse{Status: &status, Value: ""}
 		return &res, nil
 	}
 
@@ -58,15 +58,15 @@ func (server *ZPKVServiceImpl) GetKV(ctx context.Context, req *api.GetKVRequest)
 	value, err := store.Get(key)
 	if err != nil {
 		status := api.Status{Error: err.Error(), Code: 404}
-		res := api.GetKVResponse{Status: &status, Value: value}
+		res := api.GetResponse{Status: &status, Value: value}
 		return &res, nil
 	}
 	status := api.Status{Error: "", Code: 1}
-	var res = api.GetKVResponse{Status: &status, Value: value}
+	var res = api.GetResponse{Status: &status, Value: value}
 	return &res, nil
 }
 
-func (server *ZPKVServiceImpl) SetKV(ctx context.Context, req *api.SetKVRequest) (*api.MessageResponse, error) {
+func (server *ServiceImpl) Set(ctx context.Context, req *api.SetRequest) (*api.MessageResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err
@@ -89,7 +89,7 @@ func (server *ZPKVServiceImpl) SetKV(ctx context.Context, req *api.SetKVRequest)
 	return &api.MessageResponse{Status: res}, nil
 }
 
-func (server *ZPKVServiceImpl) RemoveKV(ctx context.Context, req *api.RemoveKVRequest) (*api.RemoveKVResponse, error) {
+func (server *ServiceImpl) Remove(ctx context.Context, req *api.RemoveRequest) (*api.RemoveResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err
@@ -97,18 +97,18 @@ func (server *ZPKVServiceImpl) RemoveKV(ctx context.Context, req *api.RemoveKVRe
 	store, err := server.ServiceUtils.GetStore(id)
 	if err != nil {
 		status := api.Status{Error: err.Error(), Code: 0}
-		res := api.RemoveKVResponse{Status: &status, Check: false}
+		res := api.RemoveResponse{Status: &status, Check: false}
 		return &res, nil
 	}
 
 	key := req.GetKey()
-	var res api.RemoveKVResponse
+	var res api.RemoveResponse
 	res.Check = store.Remove(key)
 	res.Status = &api.Status{Code: 1, Error: ""}
 	return &res, nil
 }
 
-func (server *ZPKVServiceImpl) ExistKV(ctx context.Context, req *api.ExistKVRequest) (*api.ExistKVResponse, error) {
+func (server *ServiceImpl) Exist(ctx context.Context, req *api.ExistRequest) (*api.ExistResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err
@@ -116,7 +116,7 @@ func (server *ZPKVServiceImpl) ExistKV(ctx context.Context, req *api.ExistKVRequ
 	store, err := server.ServiceUtils.GetStore(id)
 	if err != nil {
 		status := api.Status{Error: err.Error(), Code: 0}
-		res := api.ExistKVResponse{Status: &status, Check: false}
+		res := api.ExistResponse{Status: &status, Check: false}
 		return &res, nil
 	}
 
@@ -125,6 +125,6 @@ func (server *ZPKVServiceImpl) ExistKV(ctx context.Context, req *api.ExistKVRequ
 	existed := store.Exist(key)
 
 	status := api.Status{Error: "", Code: 1}
-	res := api.ExistKVResponse{Check: existed, Status: &status}
+	res := api.ExistResponse{Check: existed, Status: &status}
 	return &res, nil
 }

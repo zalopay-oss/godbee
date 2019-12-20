@@ -42,7 +42,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 	port := strconv.Itoa(config.GRPCPort)
-	server := service.ZPKVServiceImpl{ServiceUtils: serverUtils.NewServiceUtils()}
+	server := service.ServiceImpl{ServiceUtils: serverUtils.NewServiceUtils()}
 	api.RegisterKeyValueStoreServiceServer(grpcServer, &server)
 	lis, err := net.Listen("tcp", ":"+port)
 	if err != nil {

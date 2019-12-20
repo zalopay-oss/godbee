@@ -4,7 +4,9 @@
 
 Key-Value Store is the simplest type of database where each key is only mapped with one value. However, implementing a key-value store and store data on disk is a bit challenged because you have to cope with several problems about memory leak, race condition in multithreading environment, read/write file, I/O optimization.  
 
-In this project, we use B-Tree and B+Tree data structures to organize and manipulate data. Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
+In this project, we use B-Tree and B+Tree data structures to organize and manipulate data. Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage. 
+
+This project is contributed by [Tran.](https://github.com/TranNDC) and [Quyen Pham](https://github.com/ptq204) 
 
 ## **Architecture**  
 
@@ -48,56 +50,45 @@ message ConnectionRequest {
 message CloseConnectionRequest {
 }
 
-message GetKVRequest {
+message GetRequest {
     string key = 1;
 }
 
-message GetKVResponse {
+message GetResponse {
     Status status = 1;
     string value = 2;
 }
 
-message SetKVRequest {
+message SetRequest {
     string key = 1;
     string value = 2;
 }
 
-message RemoveKVRequest {
+message RemoveRequest {
     string key = 1;
 }
 
-message RemoveKVResponse {
+message RemoveResponse {
     Status status = 1;
     bool check = 2;
 }
 
-message ExistKVRequest {
+message ExistRequest {
     string key = 1;
 }
 
-message ExistKVResponse {
+message ExistResponse {
     Status status = 1;
     bool check = 2;
 }
 
 service KeyValueStoreService {
-    // connect ZP_KV service
-    rpc ConnectZPKV(ConnectionRequest) returns (MessageResponse){}
-
-    // close connection ZP_KV serivce
-    rpc CloseConnectionZPKV(CloseConnectionRequest) returns (MessageResponse){}
-
-    // get key-value connection db
-    rpc GetKV(GetKVRequest) returns (GetKVResponse){}
-
-    // set key-value connection db
-    rpc SetKV(SetKVRequest) returns (MessageResponse){}
-
-    // remove key-value connection db
-    rpc RemoveKV(RemoveKVRequest) returns (RemoveKVResponse){}
-
-    // check key-value exists connection db
-    rpc ExistKV(ExistKVRequest) returns (ExistKVResponse){}
+    rpc Connect(ConnectionRequest) returns (MessageResponse){}
+    rpc CloseConnection (CloseConnectionRequest) returns (MessageResponse) {}
+    rpc Get (GetRequest) returns (GetResponse) {}
+    rpc Set (SetRequest) returns (MessageResponse) {}
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {}
+    rpc Exist (ExistRequest) returns (ExistResponse) {}
 }
 ```  
 
@@ -121,8 +112,10 @@ export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
 
 ```sh
 cd source
-# Build and run server
-make server
+# Build server
+make build-server
+# Run server
+./server
 ```  
 
 - Or run docker server:  
@@ -230,4 +223,3 @@ If you find anything wrong or want to discuss more about this project, feel free
 
 Thanks [AJ Pham](https://github.com/phamtai97) for guiding me during the project.  
 
-Thanks [Quyen Pham](https://github.com/ptq204) for sharing great ideas with me.  
