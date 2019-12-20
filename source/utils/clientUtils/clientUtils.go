@@ -51,7 +51,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 
 				req := service.ConnectionRequest{Type: service.StoreType(storeType)}
 
-				res,err := cli.ConnectZPKV(context.Background(), &req)
+				res,err := cli.Connect(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
 				} else {
@@ -67,7 +67,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 				fmt.Println("(error) ERR wrong number of arguments for 'close' command")
 			} else {
 				req := service.CloseConnectionRequest{}
-				res,err := cli.CloseConnectionZPKV(context.Background(), &req)
+				res,err := cli.CloseConnection(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
 				} else {
@@ -82,8 +82,8 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 3 {
 				fmt.Println("(error) ERR wrong number of arguments for 'connect' command")
 			} else {
-				req := service.SetKVRequest{Key: commands[1], Value: commands[2]}
-				res,err := cli.SetKV(context.Background(), &req)
+				req := service.SetRequest{Key: commands[1], Value: commands[2]}
+				res,err := cli.Set(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
 				} else {
@@ -98,8 +98,8 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 2 {
 				fmt.Println("(error) ERR wrong number of arguments for 'get' command")
 			} else {
-				req := service.GetKVRequest{Key: commands[1]}
-				res,err := cli.GetKV(context.Background(), &req)
+				req := service.GetRequest{Key: commands[1]}
+				res,err := cli.Get(context.Background(), &req)
 				if err!=nil{
 					//fmt.Println("\""+res.GetValue()+"\"")
 					fmt.Println("ERROR: "+err.Error())
@@ -117,8 +117,8 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 2 {
 				fmt.Println("(error) ERR wrong number of arguments for 'exist' command")
 			} else {
-				req := service.ExistKVRequest{Key: commands[1]}
-				res,err := cli.ExistKV(context.Background(), &req)
+				req := service.ExistRequest{Key: commands[1]}
+				res,err := cli.Exist(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
 				} else if res.Status.Code != 1 {
@@ -135,8 +135,8 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 2 {
 				fmt.Println("(error) ERR wrong number of arguments for 'remove' command")
 			} else {
-				req := service.RemoveKVRequest{Key: commands[1]}
-				res,err := cli.RemoveKV(context.Background(), &req)
+				req := service.RemoveRequest{Key: commands[1]}
+				res,err := cli.Remove(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
 				} else if res.Status.Code!=1{

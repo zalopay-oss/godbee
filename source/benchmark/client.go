@@ -71,26 +71,26 @@ func (c *Client) getTimestamp() int64 {
 }
 
 func (c *Client) Connect(request proto.ConnectionRequest) (*proto.MessageResponse, error) {
-	return c.client.ConnectZPKV(c.ctx, &request)
+	return c.client.Connect(c.ctx, &request)
 }
 
 func (c *Client) Disconnect(request proto.CloseConnectionRequest) (*proto.MessageResponse, error) {
-	return c.client.CloseConnectionZPKV(c.ctx, &request)
+	return c.client.CloseConnection(c.ctx, &request)
 }
 
-func (c *Client) Get(request proto.GetKVRequest) (*proto.GetKVResponse, error) {
-	return c.client.GetKV(c.ctx, &request)
+func (c *Client) Get(request proto.GetRequest) (*proto.GetResponse, error) {
+	return c.client.Get(c.ctx, &request)
 }
 
-func (c *Client) Set(request proto.SetKVRequest) (*proto.MessageResponse, error) {
-	return c.client.SetKV(c.ctx, &request)
+func (c *Client) Set(request proto.SetRequest) (*proto.MessageResponse, error) {
+	return c.client.Set(c.ctx, &request)
 }
 
-func (c *Client) Remove(request proto.RemoveKVRequest) (*proto.RemoveKVResponse, error) {
-	return c.client.RemoveKV(c.ctx, &request)
+func (c *Client) Remove(request proto.RemoveRequest) (*proto.RemoveResponse, error) {
+	return c.client.Remove(c.ctx, &request)
 }
-func (c *Client) Exist(request proto.ExistKVRequest) (*proto.ExistKVResponse, error) {
-	return c.client.ExistKV(c.ctx, &request)
+func (c *Client) Exist(request proto.ExistRequest) (*proto.ExistResponse, error) {
+	return c.client.Exist(c.ctx, &request)
 }
 
 

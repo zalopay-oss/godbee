@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7a6f1f46-ed8a-49ae-9632-ffd1a5d59bff" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/source/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/api/proto/service.proto" beforeDir="false" afterPath="$PROJECT_DIR$/source/api/proto/service.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/benchmark/boomer.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/benchmark/boomer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/benchmark/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/benchmark/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/cmd/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/cmd/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/repository/GStore.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/repository/GStore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/service/api/proto/service.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/service/api/proto/service.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/service/service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/service/service_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/storage/btree/BTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/storage/btree/BTree.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/storage/btree/DataFileIO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/storage/btree/DataFileIO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/utils/clientUtils/clientUtils.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/utils/clientUtils/clientUtils.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1VEK5uozwLEnCTmJ13WTllShyS9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>direct</proxy>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="619" y="121" width="919" height="864" key="find.popup" timestamp="1576822927921">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="619" y="121" width="919" height="864" key="find.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1576822927921" />
+    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1576823137208">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1576823137208" />
+  </component>
+</project>

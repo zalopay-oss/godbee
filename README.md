@@ -4,7 +4,9 @@
 
 Key-Value Store is the simplest type of database where each key is only mapped with one value. However, implementing a key-value store and store data on disk is a bit challenged because you have to cope with several problems about memory leak, race condition in multithreading environment, read/write file, I/O optimization.  
 
-In this project, we use B-Tree and B+Tree data structures to organize and manipulate data. Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
+In this project, we use B-Tree and B+Tree data structures to organize and manipulate data. Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage. 
+
+Project is contributed by [Tran.](https://github.com/TranNDC) and [Quyen Pham](https://github.com/ptq204) 
 
 ## **Architecture**  
 
@@ -66,7 +68,8 @@ export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
 - Run server:  
 
 ```sh
-make server
+make build-server
+./server
 ```  
 
 - Or run docker server:  
@@ -100,4 +103,3 @@ If you find anything wrong or want to discuss more about this project, feel free
 
 Thanks [AJ Pham](https://github.com/phamtai97) for guiding me during the project.  
 
-Thanks [Quyen Pham](https://github.com/ptq204) for sharing great ideas with me.  

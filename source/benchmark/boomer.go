@@ -57,7 +57,7 @@ func (boomerClient *BoomerClient) Set() {
 	client := boomerClient.client
 	start := boomer.Now()
 	kv := strconv.Itoa(rand.Int())
-	messageResponse, err := client.Set(service.SetKVRequest{Key:kv,Value:kv})
+	messageResponse, err := client.Set(service.SetRequest{Key:kv,Value:kv})
 	elapsed := boomer.Now() - start
 
 	client.Close()
@@ -75,7 +75,7 @@ func (boomerClient *BoomerClient) Get() {
 	client := boomerClient.client
 	start := boomer.Now()
 	kv := strconv.Itoa(rand.Int())
-	kvResponse, err := client.Get(service.GetKVRequest{Key: kv})
+	kvResponse, err := client.Get(service.GetRequest{Key: kv})
 	elapsed := boomer.Now() - start
 	client.Close()
 	if err != nil {
@@ -91,7 +91,7 @@ func (boomerClient *BoomerClient) Remove() {
 	client := boomerClient.client
 	start := boomer.Now()
 	kv := strconv.Itoa(rand.Int())
-	kvResponse, err := client.Remove(service.RemoveKVRequest{Key: kv})
+	kvResponse, err := client.Remove(service.RemoveRequest{Key: kv})
 	elapsed := boomer.Now() - start
 
 	client.Close()
@@ -109,7 +109,7 @@ func (boomerClient *BoomerClient) Exist() {
 	client := boomerClient.client
 	start := boomer.Now()
 	kv := strconv.Itoa(rand.Int())
-	kvResponse, err := client.Exist(service.ExistKVRequest{Key: kv})
+	kvResponse, err := client.Exist(service.ExistRequest{Key: kv})
 	elapsed := boomer.Now() - start
 
 	client.Close()
