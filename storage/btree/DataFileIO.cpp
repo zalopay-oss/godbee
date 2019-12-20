@@ -197,10 +197,6 @@ string getDBFileNameInConfig() {
 void WRITE_HEADER_INIT() {
     BTreeStore* treeMetaData = new BTreeStore();
     getConfigValues(treeMetaData);
-
-    cout << treeMetaData->bufferSize << endl;
-    cout << treeMetaData->pageSize << endl;
-    cout << treeMetaData->valueSize << endl;
     
     treeMetaData->rootPos = 0;
     treeMetaData->nextPosNode = treeMetaData->rootPos;
