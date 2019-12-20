@@ -10,6 +10,7 @@ import (
 )
 import (
 	"errors"
+	"github.com/1612898/zpkvservice/storage"
 	"sync"
 	"unsafe"
 )
@@ -20,17 +21,23 @@ type BTreeStore struct {
 
 var instance *BTreeStore
 var once sync.Once
-
+var keySize, valueSize = 35,1024
+var configFile = "./configs/.configB"
 
 func GetInstance() *BTreeStore {
 	once.Do(func() {
 		instance = &BTreeStore{C.BTreeInit()}
+		tmp,err := storage.SplitConfig(configFile)
+		if err==nil{
+			keySize = tmp[0]
+			valueSize = tmp[1]
+		}
 	})
 	return instance
 }
 
-func Free()  {
-	if instance!=nil{
+func Free() {
+	if instance != nil {
 		instance.Free()
 	}
 }
@@ -55,12 +62,16 @@ func (b BTreeStore) Get(k string) (string, error) {
 	return strRes, err
 }
 
-func (b BTreeStore) Set(k string, v string) {
+func (b BTreeStore) Set(k string, v string) error {
+	if len(k) > keySize || len(v)>keySize {
+		return errors.New("key or value is oversize")
+	}
 	key := C.CString(k)
 	value := C.CString(v)
 	C.BTreeSet(b.tree, key, value)
 	C.free(unsafe.Pointer(key))
 	C.free(unsafe.Pointer(value))
+	return nil
 }
 
 func (b BTreeStore) Remove(k string) bool {
@@ -76,4 +87,3 @@ func (b BTreeStore) Exist(k string) bool {
 	C.free(unsafe.Pointer(key))
 	return int(res) != 0
 }
-

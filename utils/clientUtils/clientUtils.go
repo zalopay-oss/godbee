@@ -24,13 +24,18 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 
 	var commands []string
 	commands, _ = splitCommand(command)
+	n := len(commands)
+
+	if n==0{
+		fmt.Println("(error) ERR unknown command.")
+		return true
+	}
 
 	if isExitCommand(commands[0]) {
 		fmt.Println("Bye bye!!")
 		return false;
 	}
 
-	n := len(commands)
 
 	if n > 0 {
 		cmdType := strings.ToLower(commands[0])
