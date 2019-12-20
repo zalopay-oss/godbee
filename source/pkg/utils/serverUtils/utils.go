@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/1612898/zpkvservice/repository"
+	"github.com/1612898/zpkvservice/pkg/repository"
 	"google.golang.org/grpc/peer"
 )
 

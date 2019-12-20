@@ -12,7 +12,6 @@ void KeyValueStoreDisk::INIT_STORE() {
         FILE* file = fileManager->getFilePtr();
         BTreeNode* root = READ_NODE(database, NULL, database->getRootPos(), file);
         database->setRootNode(root);
-        cout << "ROOT POS: " << database->getRootPos() << endl;
         fileManager->giveFilePtrBack(file);
     }
 }
