@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 	"errors"
+	"github.com/1612898/zpkvservice/pkg/service/api/proto"
+	"github.com/1612898/zpkvservice/pkg/utils/serverUtils"
 	"github.com/1612898/zpkvservice/repository"
-	"github.com/1612898/zpkvservice/service/api/proto"
-	"github.com/1612898/zpkvservice/utils/serverUtils"
 	"github.com/stretchr/testify/mock"
 	"testing"
 )
@@ -72,7 +72,7 @@ func TestZPKVServiceImpl_Connect(t *testing.T) {
 	(mockService).On("GetConnID",ctx).Return("123",nil)
 	var server = &ServiceImpl{ServiceUtils: *mockService}
 
-	req := service.ConnectionRequest{Type:service.StoreType_BPlusTreeDisk}
+	req := service.ConnectionRequest{Type: service.StoreType_BPlusTreeDisk}
 	res,err := server.Connect(ctx,&req)
 	if err!=nil{
 		t.Error("Connect failed, got Error ",err.Error())
@@ -80,7 +80,7 @@ func TestZPKVServiceImpl_Connect(t *testing.T) {
 		t.Error("Connect failed, got internal Error ",res.GetStatus().GetError())
 	}
 
-	req = service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	req = service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	res,err = server.Connect(ctx,&req)
 	if err!=nil{
 		t.Error("Connect failed, got Error ",err.Error())
@@ -88,7 +88,7 @@ func TestZPKVServiceImpl_Connect(t *testing.T) {
 		t.Error("Connect failed, got internal Error ",res.GetStatus().GetError())
 	}
 
-	req = service.ConnectionRequest{Type:4}
+	req = service.ConnectionRequest{Type: 4}
 	res,err = server.Connect(ctx,&req)
 	if err!=nil{
 		t.Error("Connect failed, got Error ",err.Error())
@@ -128,7 +128,7 @@ func TestZPKVServiceImpl_CloseConnection(t *testing.T) {
 	/*
 		Case Connect to B-Storage
 	*/
-	reqC := service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	reqC := service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	req = service.CloseConnectionRequest{}
 	res,err = server.CloseConnection(ctx,&req)
@@ -142,7 +142,7 @@ func TestZPKVServiceImpl_CloseConnection(t *testing.T) {
 	/*
 		Case Connect to B+Storage
 	*/
-	reqC = service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	reqC = service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	req = service.CloseConnectionRequest{}
 	res,err = server.CloseConnection(ctx,&req)
@@ -173,7 +173,7 @@ func TestZPKVServiceImpl_Set(t *testing.T) {
 	mockService.On("GetStore",mock.Anything).Return(gStore,nil)
 	mockService.On("GetConnID",mock.Anything).Return("1223",nil)
 	var server = &ServiceImpl{ServiceUtils: mockService}
-	req := service.SetRequest{Key:"abc",Value:"abd"}
+	req := service.SetRequest{Key: "abc",Value:"abd"}
 
 	/*
 		Case Haven't connect to any storage
@@ -187,7 +187,7 @@ func TestZPKVServiceImpl_Set(t *testing.T) {
 	/*
 		Case Connect to B-Storage
 	*/
-	reqC := service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	reqC := service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Set(ctx,&req)
 	if err!=nil{
@@ -199,7 +199,7 @@ func TestZPKVServiceImpl_Set(t *testing.T) {
 	/*
 		Case Connect to B+Storage
 	*/
-	reqC = service.ConnectionRequest{Type:service.StoreType_BPlusTreeDisk}
+	reqC = service.ConnectionRequest{Type: service.StoreType_BPlusTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Set(ctx,&req)
 	if err!=nil{
@@ -214,7 +214,7 @@ func TestZPKVServiceImpl_Set(t *testing.T) {
 	mockService = newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("",errors.New("error"))
 	server = &ServiceImpl{ServiceUtils: mockService}
-	req = service.SetRequest{Key:"abc",Value:"abd"}
+	req = service.SetRequest{Key: "abc",Value:"abd"}
 	res,err = server.Set(ctx,&req)
 	if err==nil{
 		t.Error("Set failed, Should got Error")
@@ -231,7 +231,7 @@ func TestZPKVServiceImpl_Get(t *testing.T) {
 	mockService.On("GetStore",mock.Anything).Return(gStore,nil)
 	mockService.On("GetConnID",mock.Anything).Return("1223",nil)
 	var server = &ServiceImpl{ServiceUtils: mockService}
-	req := service.GetRequest{Key:"getNULL"}
+	req := service.GetRequest{Key: "getNULL"}
 
 	/*
 		Case Haven't connect to any storage
@@ -246,7 +246,7 @@ func TestZPKVServiceImpl_Get(t *testing.T) {
 	/*
 		Case NOT FOUND Connect to B+Storage
 	*/
-	reqC := service.ConnectionRequest{Type:service.StoreType_BPlusTreeDisk}
+	reqC := service.ConnectionRequest{Type: service.StoreType_BPlusTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Get(ctx,&req)
 	if err!=nil{
@@ -258,7 +258,7 @@ func TestZPKVServiceImpl_Get(t *testing.T) {
 	/*
 		Case NOT FOUND Connect to B-Storage
 	*/
-	reqC = service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	reqC = service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Get(ctx,&req)
 	if err!=nil{
@@ -284,7 +284,7 @@ func TestZPKVServiceImpl_Get(t *testing.T) {
 	mockService = newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("",errors.New("error"))
 	server = &ServiceImpl{ServiceUtils: mockService}
-	req = service.GetRequest{Key:"abc"}
+	req = service.GetRequest{Key: "abc"}
 	res,err = server.Get(ctx,&req)
 	if err==nil{
 		t.Error("Get failed, Should got Error")
@@ -303,7 +303,7 @@ func TestZPKVServiceImpl_Remove(t *testing.T) {
 	mockService.On("GetConnID",mock.Anything).Return("1223",nil)
 	var server = &ServiceImpl{ServiceUtils: mockService}
 
-	req := service.RemoveRequest{Key:"removedNULL"}
+	req := service.RemoveRequest{Key: "removedNULL"}
 
 	res,err := server.Remove(ctx,&req)
 	if err!=nil{
@@ -312,7 +312,7 @@ func TestZPKVServiceImpl_Remove(t *testing.T) {
 		t.Error("Remove failed, should get Error Store type not Available " + res.GetStatus().GetError())
 	}
 
-	reqC := service.ConnectionRequest{Type:service.StoreType_BPlusTreeDisk}
+	reqC := service.ConnectionRequest{Type: service.StoreType_BPlusTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Remove(ctx,&req)
 	if err!=nil{
@@ -323,7 +323,7 @@ func TestZPKVServiceImpl_Remove(t *testing.T) {
 		t.Error("Remove failed, Nothing to remove")
 	}
 
-	reqC = service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	reqC = service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Remove(ctx,&req)
 	if err!=nil{
@@ -347,7 +347,7 @@ func TestZPKVServiceImpl_Remove(t *testing.T) {
 	mockService = newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("",errors.New("error"))
 	server = &ServiceImpl{ServiceUtils: mockService}
-	req = service.RemoveRequest{Key:"abc"}
+	req = service.RemoveRequest{Key: "abc"}
 	res,err = server.Remove(ctx,&req)
 	if err==nil{
 		t.Error("Remove failed, Should got Error")
@@ -367,7 +367,7 @@ func TestZPKVServiceImpl_Exist(t *testing.T) {
 	mockService.On("GetConnID",mock.Anything).Return("1223",nil)
 	var server = &ServiceImpl{ServiceUtils: mockService}
 
-	req := service.ExistRequest{Key:"existNULL"}
+	req := service.ExistRequest{Key: "existNULL"}
 
 	res,err := server.Exist(ctx,&req)
 	if err!=nil{
@@ -376,7 +376,7 @@ func TestZPKVServiceImpl_Exist(t *testing.T) {
 		t.Error("Exist failed, should get Error Store type not Available " + res.GetStatus().GetError())
 	}
 
-	reqC := service.ConnectionRequest{Type:service.StoreType_BPlusTreeDisk}
+	reqC := service.ConnectionRequest{Type: service.StoreType_BPlusTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Exist(ctx,&req)
 	if err!=nil{
@@ -388,7 +388,7 @@ func TestZPKVServiceImpl_Exist(t *testing.T) {
 	}
 
 
-	reqC = service.ConnectionRequest{Type:service.StoreType_BTreeDisk}
+	reqC = service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
 	res,err = server.Exist(ctx,&req)
 	if err!=nil{
@@ -413,7 +413,7 @@ func TestZPKVServiceImpl_Exist(t *testing.T) {
 	mockService = newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("",errors.New("error"))
 	server = &ServiceImpl{ServiceUtils: mockService}
-	req = service.ExistRequest{Key:"abc"}
+	req = service.ExistRequest{Key: "abc"}
 	res,err = server.Exist(ctx,&req)
 	if err==nil{
 		t.Error("Exist failed, Should got Error")

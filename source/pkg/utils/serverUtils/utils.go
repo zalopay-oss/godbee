@@ -3,17 +3,17 @@ package serverUtils
 import (
 	"context"
 	"errors"
+	service2 "github.com/1612898/zpkvservice/pkg/service/api/proto"
 	"strings"
 	"sync"
 
 	"github.com/1612898/zpkvservice/repository"
-	service "github.com/1612898/zpkvservice/service/api/proto"
 	"google.golang.org/grpc/peer"
 )
 
-func IsValidType(value service.StoreType) bool {
+func IsValidType(value service2.StoreType) bool {
 	switch value {
-	case service.StoreType_BTreeDisk, service.StoreType_BPlusTreeDisk:
+	case service2.StoreType_BTreeDisk, service2.StoreType_BPlusTreeDisk:
 		return true
 	}
 	return false
@@ -22,14 +22,14 @@ func IsValidType(value service.StoreType) bool {
 type IServiceUtils interface {
 	GetConnID(context.Context) (string, error)
 	GetStore(id string) (repository.GStore, error)
-	UpdateMap(id string, getType service.StoreType)
-	GetSessionStoreType(id string) (service.StoreType, bool)
+	UpdateMap(id string, getType service2.StoreType)
+	GetSessionStoreType(id string) (service2.StoreType, bool)
 	DelSessionStoreType(id string)
 }
 
 type Map struct {
 	sync.Mutex
-	m map[string]service.StoreType
+	m map[string]service2.StoreType
 }
 
 type ServiceUtils struct {
@@ -38,7 +38,7 @@ type ServiceUtils struct {
 
 func NewServiceUtils() *ServiceUtils {
 	res := ServiceUtils{}
-	res.sessionMap = &Map{m: map[string]service.StoreType{}}
+	res.sessionMap = &Map{m: map[string]service2.StoreType{}}
 	return &res
 }
 
@@ -73,9 +73,9 @@ func (s ServiceUtils) GetStore(id string) (repository.GStore, error) {
 	var store repository.GStore
 
 	switch sType {
-	case service.StoreType_BPlusTreeDisk:
+	case service2.StoreType_BPlusTreeDisk:
 		store, err = repository.GetInstanceBPlus()
-	case service.StoreType_BTreeDisk:
+	case service2.StoreType_BTreeDisk:
 		store, err = repository.GetInstanceB()
 	default:
 		err = errors.New("store type not found")
@@ -86,13 +86,13 @@ func (s ServiceUtils) GetStore(id string) (repository.GStore, error) {
 	return store, nil
 }
 
-func (s ServiceUtils) UpdateMap(id string, storeType service.StoreType) {
+func (s ServiceUtils) UpdateMap(id string, storeType service2.StoreType) {
 	s.sessionMap.Lock()
 	s.sessionMap.m[id] = storeType
 	s.sessionMap.Unlock()
 }
 
-func (s ServiceUtils) GetSessionStoreType(id string) (service.StoreType, bool) {
+func (s ServiceUtils) GetSessionStoreType(id string) (service2.StoreType, bool) {
 	s.sessionMap.Lock()
 	res, ok := s.sessionMap.m[id]
 	s.sessionMap.Unlock()

@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/1612898/zpkvservice/storage/bplustree"
-	"github.com/1612898/zpkvservice/storage/btree"
+	"github.com/1612898/zpkvservice/pkg/storage/bplustree"
+	"github.com/1612898/zpkvservice/pkg/storage/btree"
 	log "github.com/sirupsen/logrus"
 )
 

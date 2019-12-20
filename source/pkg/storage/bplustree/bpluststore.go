@@ -1,7 +1,7 @@
-package btree
+package bplustree
 
 /*
-#include "KeyValueStoreGC.h"
+#include "GBPlusTreeStore.h"
 #include <stdlib.h>
 #cgo CXXFLAGS: -g -std=c++17 -w -pthread
 */
@@ -10,23 +10,24 @@ import (
 )
 import (
 	"errors"
-	"github.com/1612898/zpkvservice/storage"
+	"github.com/1612898/zpkvservice/pkg/storage"
 	"sync"
 	"unsafe"
 )
 
-type BTreeStore struct {
-	tree C.KeyValueStoreDiskGC
+type GBPlusStore struct {
+	tree C.GBPlusTreeStore
 }
 
-var instance *BTreeStore
+var instance *GBPlusStore
 var once sync.Once
 var keySize, valueSize = 35,1024
-var configFile = "./configs/.configB"
+var configFile = "./configs/.configBPlus"
 
-func GetInstance() *BTreeStore {
+func GetInstance() *GBPlusStore {
 	once.Do(func() {
-		instance = &BTreeStore{C.BTreeInit()}
+		instance = &GBPlusStore{}
+		instance.tree = C.GBPlusInit()
 		tmp,err := storage.SplitConfig(configFile)
 		if err==nil{
 			keySize = tmp[0]
@@ -42,14 +43,14 @@ func Free() {
 	}
 }
 
-func (b BTreeStore) Free() {
-	C.BTreeFree(b.tree)
-	b.tree = nil
+func (instance GBPlusStore) Free() {
+	C.GBPlusFree(instance.tree)
+	instance.tree = nil
 }
 
-func (b BTreeStore) Get(k string) (string, error) {
+func (instance GBPlusStore) Get(k string) (string, error) {
 	key := C.CString(k)
-	res := C.BTreeGet(b.tree, key)
+	res := C.GBPlusGet(instance.tree, key)
 	strRes := ""
 	var err error = nil
 	if res == nil {
@@ -62,28 +63,28 @@ func (b BTreeStore) Get(k string) (string, error) {
 	return strRes, err
 }
 
-func (b BTreeStore) Set(k string, v string) error {
+func (instance GBPlusStore) Set(k string, v string) error {
 	if len(k) > keySize || len(v)>keySize {
 		return errors.New("key or value is oversize")
 	}
 	key := C.CString(k)
 	value := C.CString(v)
-	C.BTreeSet(b.tree, key, value)
+	C.GBPlusSet(instance.tree, key, value)
 	C.free(unsafe.Pointer(key))
 	C.free(unsafe.Pointer(value))
 	return nil
 }
 
-func (b BTreeStore) Remove(k string) bool {
+func (instance GBPlusStore) Remove(k string) bool {
 	key := C.CString(k)
-	res := C.BTreeRemove(b.tree, key)
+	res := C.GBPlusRemove(instance.tree, key)
 	C.free(unsafe.Pointer(key))
-	return int(res) != 0
+	return res != 0
 }
 
-func (b BTreeStore) Exist(k string) bool {
+func (instance GBPlusStore) Exist(k string) bool {
 	key := C.CString(k)
-	res := C.BTreeExist(b.tree, key)
+	res := C.GBPlusExist(instance.tree, key)
 	C.free(unsafe.Pointer(key))
-	return int(res) != 0
+	return res != 0
 }

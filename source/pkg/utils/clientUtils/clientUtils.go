@@ -5,7 +5,7 @@ import (
 	"encoding/csv"
 	"errors"
 	"fmt"
-	service "github.com/1612898/zpkvservice/service/api/proto"
+	service2 "github.com/1612898/zpkvservice/pkg/service/api/proto"
 	"strings"
 )
 
@@ -19,7 +19,7 @@ func splitCommand(s string) ([]string,error){
 	return r.Read()
 }
 
-func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool {
+func ExecuteCommand(cli service2.KeyValueStoreServiceClient,command string) bool {
 
 	var commands []string
 	commands, _ = splitCommand(command)
@@ -49,7 +49,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 					break
 				}
 
-				req := service.ConnectionRequest{Type: service.StoreType(storeType)}
+				req := service2.ConnectionRequest{Type: service2.StoreType(storeType)}
 
 				res,err := cli.Connect(context.Background(), &req)
 				if err!=nil{
@@ -66,7 +66,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 1 {
 				fmt.Println("(error) ERR wrong number of arguments for 'close' command")
 			} else {
-				req := service.CloseConnectionRequest{}
+				req := service2.CloseConnectionRequest{}
 				res,err := cli.CloseConnection(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
@@ -82,7 +82,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 3 {
 				fmt.Println("(error) ERR wrong number of arguments for 'connect' command")
 			} else {
-				req := service.SetRequest{Key: commands[1], Value: commands[2]}
+				req := service2.SetRequest{Key: commands[1], Value: commands[2]}
 				res,err := cli.Set(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
@@ -98,7 +98,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 2 {
 				fmt.Println("(error) ERR wrong number of arguments for 'get' command")
 			} else {
-				req := service.GetRequest{Key: commands[1]}
+				req := service2.GetRequest{Key: commands[1]}
 				res,err := cli.Get(context.Background(), &req)
 				if err!=nil{
 					//fmt.Println("\""+res.GetValue()+"\"")
@@ -117,7 +117,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 2 {
 				fmt.Println("(error) ERR wrong number of arguments for 'exist' command")
 			} else {
-				req := service.ExistRequest{Key: commands[1]}
+				req := service2.ExistRequest{Key: commands[1]}
 				res,err := cli.Exist(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
@@ -135,7 +135,7 @@ func ExecuteCommand(cli service.KeyValueStoreServiceClient,command string) bool 
 			if n != 2 {
 				fmt.Println("(error) ERR wrong number of arguments for 'remove' command")
 			} else {
-				req := service.RemoveRequest{Key: commands[1]}
+				req := service2.RemoveRequest{Key: commands[1]}
 				res,err := cli.Remove(context.Background(), &req)
 				if err!=nil{
 					fmt.Println(err)
