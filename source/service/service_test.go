@@ -29,7 +29,8 @@ func (gS gStoreMock) Get(k string) (string, error) {
 	args := gS.Called(k)
 	return args.String(0),args.Error(1)
 }
-func (gS gStoreMock) Set(k string, v string) {
+func (gS gStoreMock) Set(k string, v string) error {
+	return nil
 }
 func (gS gStoreMock) Remove(k string) bool {
 	args := gS.Called(k)
