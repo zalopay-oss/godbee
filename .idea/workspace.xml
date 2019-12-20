@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a6f1f46-ed8a-49ae-9632-ffd1a5d59bff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/source/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/api/proto/service.proto" beforeDir="false" afterPath="$PROJECT_DIR$/source/api/proto/service.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/benchmark/boomer.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/benchmark/boomer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/benchmark/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/benchmark/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/cmd/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/cmd/server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/repository/GStore.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/repository/GStore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/service/api/proto/service.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/service/api/proto/service.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/service/service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/service/service_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/storage/btree/BTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/storage/btree/BTree.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/storage/btree/DataFileIO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/storage/btree/DataFileIO.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/utils/clientUtils/clientUtils.go" beforeDir="false" afterPath="$PROJECT_DIR$/source/utils/clientUtils/clientUtils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DeletedNodes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DeletedValues" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/bTreeDatabase" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/bTreeDeletedNodes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/bTreeDeletedValues" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/databaseBPlus" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +49,11 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
