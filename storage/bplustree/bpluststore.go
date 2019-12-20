@@ -10,6 +10,7 @@ import (
 )
 import (
 	"errors"
+	"github.com/1612898/zpkvservice/storage"
 	"sync"
 	"unsafe"
 )
@@ -20,24 +21,31 @@ type GBPlusStore struct {
 
 var instance *GBPlusStore
 var once sync.Once
+var keySize, valueSize = 35,1024
+var configFile = "./configs/.configBPlus"
 
 func GetInstance() *GBPlusStore {
 	once.Do(func() {
-		instance =&GBPlusStore{}
+		instance = &GBPlusStore{}
 		instance.tree = C.GBPlusInit()
+		tmp,err := storage.SplitConfig(configFile)
+		if err==nil{
+			keySize = tmp[0]
+			valueSize = tmp[1]
+		}
 	})
 	return instance
 }
 
-func Free()  {
-	if instance !=nil{
+func Free() {
+	if instance != nil {
 		instance.Free()
 	}
 }
 
 func (instance GBPlusStore) Free() {
 	C.GBPlusFree(instance.tree)
-	instance.tree=nil
+	instance.tree = nil
 }
 
 func (instance GBPlusStore) Get(k string) (string, error) {
@@ -55,12 +63,16 @@ func (instance GBPlusStore) Get(k string) (string, error) {
 	return strRes, err
 }
 
-func (instance GBPlusStore) Set(k string, v string) {
+func (instance GBPlusStore) Set(k string, v string) error {
+	if len(k) > keySize || len(v)>keySize {
+		return errors.New("key or value is oversize")
+	}
 	key := C.CString(k)
 	value := C.CString(v)
 	C.GBPlusSet(instance.tree, key, value)
 	C.free(unsafe.Pointer(key))
 	C.free(unsafe.Pointer(value))
+	return nil
 }
 
 func (instance GBPlusStore) Remove(k string) bool {

@@ -7,7 +7,7 @@ import (
 )
 
 type GStore interface {
-	Set(string, string)
+	Set(string, string) error
 	Get(string) (string, error)
 	Remove(string) bool
 	Exist(string) bool
@@ -22,7 +22,6 @@ func GetInstanceB() (GStore, error) {
 	return btree.GetInstance(), nil
 }
 
-
 func Free() {
 	btree.Free()
 	bplustree.Free()
@@ -34,5 +33,3 @@ func Init() {
 	btree.GetInstance()
 	log.Info("B tree")
 }
-
-
