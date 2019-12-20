@@ -29,7 +29,7 @@ func Free() {
 
 func Init() {
 	bplustree.GetInstance()
-	log.Info("B+ tree")
+	log.Info("Prepared B+storage")
 	btree.GetInstance()
-	log.Info("B tree")
+	log.Info("Prepared B-storage")
 }

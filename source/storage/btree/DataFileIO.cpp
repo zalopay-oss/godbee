@@ -173,7 +173,7 @@ void getConfigValues(BTreeStore* treeMetaData) {
             treeMetaData->T = stoi(val);
         }
         else if(configName == "DB_FILE_NAME") {
-            cout << val << endl;
+//            cout << val << endl;
             strcpy(treeMetaData->dbFileName, val.c_str());
         }
     }
@@ -358,7 +358,7 @@ void readDeletedValsPos(BTree* tree) {
 
 bool checkFileDBExist() {
     string dbFileName = getDBFileNameInConfig();
-    cout << "DB FILE NAME: " << dbFileName << endl;
+//    cout << "DB FILE NAME: " << dbFileName << endl;
     ifstream ifile(dbFileName);
     return ifile.good();
 }
