@@ -1,5 +1,21 @@
 # **ZP Key-Value Store**  
 
+<!-- TOC -->
+[**ZP Key-Value Store**](#zp-key-value-store)
+- [ZP Key-Value Store](#zp-key-value-store)
+  - [Overview](#overview)
+  - [Architecture](#architecture)
+  - [Requirements](#requirements)
+  - [Methods supported](#methods-supported)
+  - [Build](#build)
+  - [Run](#run)
+  - [Test](#test)
+    - [Test CLI](#test-cli)
+    - [Run unit tests](#run-unit-tests)
+  - [Benchmark](#benchmark)
+  - [Contribution](#contribution)
+  - [Acknowledgements](#acknowledgements)
+
 ## **Overview**  
 
 The implementation of Key-Value Store project of ZaloPay fresher program. In this project, we choose B-Tree and B+Tree data structures to organize and manipulate data. Key-Value Storage is written in C++ and Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
