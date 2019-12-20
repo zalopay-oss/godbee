@@ -1,7 +1,7 @@
 package benchmark
 
 import (
-	"github.com/1612898/zpkvservice/service/api/proto"
+	"github.com/1612898/zpkvservice/pkg/service/api/proto"
 	boomer "github.com/myzhan/boomer"
 	log "github.com/sirupsen/logrus"
 	"math/rand"
@@ -57,7 +57,7 @@ func (boomerClient *BoomerClient) Set() {
 	client := boomerClient.client
 	start := boomer.Now()
 	kv := strconv.Itoa(rand.Int())
-	messageResponse, err := client.Set(service.SetRequest{Key:kv,Value:kv})
+	messageResponse, err := client.Set(service.SetRequest{Key: kv,Value:kv})
 	elapsed := boomer.Now() - start
 
 	client.Close()

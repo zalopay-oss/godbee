@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/1612898/zpkvservice/configs"
-	proto "github.com/1612898/zpkvservice/service/api/proto"
+	proto "github.com/1612898/zpkvservice/pkg/service/api/proto"
 	"time"
 
 	grpcpool "github.com/processout/grpc-go-pool"
