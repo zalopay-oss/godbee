@@ -2,16 +2,12 @@
 
 ## **Overview**  
 
-Key-Value Store is the simplest type of database where each key is only mapped with one value. However, implementing a key-value store and store data on disk is a bit challenged because you have to cope with several problems about memory leak, race condition in multithreading environment, read/write file, I/O optimization.  
-
-In this project, we use B-Tree and B+Tree data structures to organize and manipulate data. Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage. 
-
-This project is contributed by [Tran.](https://github.com/TranNDC) and [Quyen Pham](https://github.com/ptq204) 
+The implementation of Key-Value Store project of ZaloPay fresher program. In this project, we choose B-Tree and B+Tree data structures to organize and manipulate data. Key-Value Storage is written in C++ and Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
 
 ## **Architecture**  
 
 <div align="center">
-    <img src="images/architect.png">
+    <img src="images/architecture.png">
 </div>  
 
 ## **Requirements**  
@@ -19,6 +15,7 @@ This project is contributed by [Tran.](https://github.com/TranNDC) and [Quyen Ph
 - C++17
 - Golang 1.13.1
 - Locust
+- Python 3.7.3
 - Docker Engine - Community 19.03.3  
 
 ## **Methods supported**  
@@ -27,60 +24,6 @@ This project is contributed by [Tran.](https://github.com/TranNDC) and [Quyen Ph
 syntax = "proto3";
 
 package service;
-
-message Status {
-    //code = 1 means success
-    int32 code = 1;
-    string error = 2;
-}
-
-message MessageResponse {
-    Status status = 1;
-}
-
-enum StoreType {
-    BTreeDisk = 0;
-    BPlusTreeDisk = 1;
-}
-
-message ConnectionRequest {
-    StoreType type = 1;
-}
-
-message CloseConnectionRequest {
-}
-
-message GetRequest {
-    string key = 1;
-}
-
-message GetResponse {
-    Status status = 1;
-    string value = 2;
-}
-
-message SetRequest {
-    string key = 1;
-    string value = 2;
-}
-
-message RemoveRequest {
-    string key = 1;
-}
-
-message RemoveResponse {
-    Status status = 1;
-    bool check = 2;
-}
-
-message ExistRequest {
-    string key = 1;
-}
-
-message ExistResponse {
-    Status status = 1;
-    bool check = 2;
-}
 
 service KeyValueStoreService {
     rpc Connect(ConnectionRequest) returns (MessageResponse){}
@@ -111,19 +54,25 @@ export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
 - Run server:  
 
 ```sh
+# ./source
 cd source
+
 # Build server
 make build-server
+
 # Run server
 ./server
 ```  
 
-- Or run docker server:  
+- Or run Docker server:  
 
 ```sh
+# ./source
 cd source
+
 # Build docker image named "zpkv-server"
 sudo docker build -t zpkv-server .
+
 # Run image
 sudo docker run -it --net="host" zpkv-server
 ```
@@ -131,7 +80,9 @@ sudo docker run -it --net="host" zpkv-server
 - Run client:  
 
 ```sh
+# ./source
 cd source
+
 # Build and run client
 make client
 ```  
@@ -141,62 +92,54 @@ make client
 ### Test CLI
 
 - **Connect** to B/B+ Storage:
-
-> CONNECT {B | BPLUS}
+```sh
+# CONNECT {B | BPLUS}
+KVZP > CONNECT B
+OK
+```  
 
 - **Disconnect** to the storage:
-
-> CLOSE
-
-- **Insert** new Key-Value:
-
-> SET key value
-
-- **Get** value from key:
-
-> GET key
-
-- **Remove** key:
-
-> REMOVE key
-
-or
-
-> DEL key
-
-- Check whether key **exists** in storage or not.
-
-> EXIST key
-
-Example:  
-
 ```sh
-KVZP > connect B
+# CLOSE
+KVZP > CLOSE
 OK
+```
+- **Insert** new Key-Value:
+```sh
+# SET key value
 KVZP > SET a a
 OK
+```
+- **Get** value from key:
+```sh
+# GET key
 KVZP > GET a
 "a"
-KVZP > EXIST a
-TRUE
+```
+- **Remove** key:
+```sh
+# {REMOVE|DEL} key
 KVZP > DEL a
 OK
-KVZP > GET a
-(nil)
+```
+- Check whether key **exists** in storage or not.
+```sh
+# EXIST key
 KVZP > EXIST a
 FALSE
-KVZP > SET b b
-OK
-KVZP > GET b
-"b"
+```
+- Exit program
+```sh
 KVZP > exit
 Bye bye!!
-```
+```  
 
 ### Run unit tests  
 
 ```sh
+# ./source
 cd source
+# run test
 make test
 ```  
 
