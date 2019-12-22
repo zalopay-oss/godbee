@@ -1,54 +1,14 @@
 package main
 
 import (
-	"github.com/1612898/zpkvservice/configs"
-	"github.com/1612898/zpkvservice/service"
-	api "github.com/1612898/zpkvservice/service/api/proto"
-	"github.com/1612898/zpkvservice/utils/serverUtils"
+	"github.com/1612898/zpkvservice/pkg/cmd/server"
 	log "github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
-	"google.golang.org/grpc"
-	"net"
 	"os"
-	"os/signal"
-	"strconv"
-	"syscall"
 )
 
 func main() {
-	path:="./data"
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		os.Mkdir(path, 0777)
-	}
-
-
-	config := &configs.ServiceConfig{}
-
-	_ = configs.LoadConfig()
-
-	if err := viper.Unmarshal(config); err != nil {
-		log.Fatal("Load config: ", err)
-	}
-	serverUtils.InitStore()
-
-	c := make(chan os.Signal)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-	go func() {
-		<-c
-		log.Info("Shutting down server...")
-		serverUtils.RemoveStore()
+	if err := server.RunServer(); err != nil {
+		log.Fatal("run server err: ", err)
 		os.Exit(1)
-	}()
-
-	grpcServer := grpc.NewServer()
-	port := strconv.Itoa(config.GRPCPort)
-	server := service.ZPKVServiceImpl{ServiceUtils: serverUtils.NewServiceUtils()}
-	api.RegisterKeyValueStoreServiceServer(grpcServer, &server)
-	lis, err := net.Listen("tcp", ":"+port)
-	if err != nil {
-		log.Fatal(err)
 	}
-	log.Info("Start KVZP service port " + port + " ...")
-	grpcServer.Serve(lis)
-
 }
