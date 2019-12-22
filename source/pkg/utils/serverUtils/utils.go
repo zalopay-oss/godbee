@@ -3,11 +3,12 @@ package serverUtils
 import (
 	"context"
 	"errors"
-	service2 "github.com/1612898/zpkvservice/pkg/service/api/proto"
 	"strings"
 	"sync"
 
-	"github.com/1612898/zpkvservice/pkg/repository"
+	service2 "github.com/zalopay-oss/GodBee/pkg/service/api/proto"
+
+	"github.com/zalopay-oss/GodBee/pkg/repository"
 	"google.golang.org/grpc/peer"
 )
 

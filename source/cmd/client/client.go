@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/1612898/zpkvservice/pkg/cmd/client"
-	log "github.com/sirupsen/logrus"
 	"os"
+
+	log "github.com/sirupsen/logrus"
+	"github.com/zalopay-oss/GodBee/pkg/cmd/client"
 )
 
 func main() {

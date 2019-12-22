@@ -1,8 +1,8 @@
-# **ZP Key-Value Store**  
+# **GodBee**  
 
 <!-- TOC -->
 [**ZP Key-Value Store**](#zp-key-value-store)
-- [ZP Key-Value Store](#zp-key-value-store)
+- [GodBee](#godbee)
   - [Overview](#overview)
   - [Architecture](#architecture)
   - [Requirements](#requirements)
@@ -10,13 +10,15 @@
   - [Build](#build)
   - [Run](#run)
   - [Test](#test)
-    - [Test CLI](#test-cli)
-    - [Run unit tests](#run-unit-tests)
   - [Benchmark](#benchmark)
   - [Contribution](#contribution)
   - [Acknowledgements](#acknowledgements)
 
 ## **Overview**  
+
+<div align="center">
+    <img src="images/logo.png">
+</div>  
 
 Key-Value Store is the simplest type of database where each key is only mapped with one value. However, implementing a key-value store and store data on disk is a bit challenged because you have to cope with several problems about memory leak, race condition in multithreading environment, read/write file, I/O optimization.  
 

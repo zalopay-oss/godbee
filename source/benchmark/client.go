@@ -3,9 +3,10 @@ package benchmark
 import (
 	"context"
 	"fmt"
-	"github.com/1612898/zpkvservice/configs"
-	proto "github.com/1612898/zpkvservice/pkg/service/api/proto"
 	"time"
+
+	"github.com/zalopay-oss/GodBee/configs"
+	proto "github.com/zalopay-oss/GodBee/pkg/service/api/proto"
 
 	grpcpool "github.com/processout/grpc-go-pool"
 	log "github.com/sirupsen/logrus"
@@ -92,7 +93,6 @@ func (c *Client) Remove(request proto.RemoveRequest) (*proto.RemoveResponse, err
 func (c *Client) Exist(request proto.ExistRequest) (*proto.ExistResponse, error) {
 	return c.client.Exist(c.ctx, &request)
 }
-
 
 //Close close conn
 func (c *Client) Close() error {

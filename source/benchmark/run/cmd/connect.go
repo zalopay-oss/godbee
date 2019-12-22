@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/1612898/zpkvservice/benchmark"
 	boomer "github.com/myzhan/boomer"
 	"github.com/spf13/cobra"
+	"github.com/zalopay-oss/GodBee/benchmark"
 )
 
 var connectBoomerCmd = &cobra.Command{
@@ -12,7 +12,7 @@ var connectBoomerCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		boomerClient := benchmark.GetBoomerClient()
 		tasks := make([]*boomer.Task, 0)
-		_ = boomerClient.LoadTask(&tasks,benchmark.CONNECT, 1)
+		_ = boomerClient.LoadTask(&tasks, benchmark.CONNECT, 1)
 		boomerClient.RunTask(tasks)
 	},
 }

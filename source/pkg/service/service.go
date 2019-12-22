@@ -2,9 +2,10 @@ package service
 
 import (
 	"context"
-	"github.com/1612898/zpkvservice/pkg/service/api/proto"
 
-	"github.com/1612898/zpkvservice/pkg/utils/serverUtils"
+	service "github.com/zalopay-oss/GodBee/pkg/service/api/proto"
+
+	"github.com/zalopay-oss/GodBee/pkg/utils/serverUtils"
 )
 
 type ServiceImpl struct {
@@ -81,7 +82,7 @@ func (server *ServiceImpl) Set(ctx context.Context, req *service.SetRequest) (*s
 	value := req.GetValue()
 
 	err = store.Set(key, value)
-	if err!=nil{
+	if err != nil {
 		res := &service.Status{Code: 0, Error: err.Error()}
 		return &service.MessageResponse{Status: res}, nil
 	}

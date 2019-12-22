@@ -1,26 +1,26 @@
 package server
 
 import (
-	"github.com/1612898/zpkvservice/configs"
-	"github.com/1612898/zpkvservice/pkg/service"
-	api "github.com/1612898/zpkvservice/pkg/service/api/proto"
-	"github.com/1612898/zpkvservice/pkg/utils/serverUtils"
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
-	"google.golang.org/grpc"
 	"net"
 	"os"
 	"os/signal"
 	"strconv"
 	"syscall"
+
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+	"github.com/zalopay-oss/GodBee/configs"
+	"github.com/zalopay-oss/GodBee/pkg/service"
+	api "github.com/zalopay-oss/GodBee/pkg/service/api/proto"
+	"github.com/zalopay-oss/GodBee/pkg/utils/serverUtils"
+	"google.golang.org/grpc"
 )
 
-func RunServer() error{
-	path:="./data"
+func RunServer() error {
+	path := "./data"
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.Mkdir(path, 0777)
 	}
-
 
 	config := &configs.ServiceConfig{}
 
@@ -49,7 +49,7 @@ func RunServer() error{
 		//log.Fatal(err)
 		return err
 	}
-	log.Info("Start ZPKV service port " + port + " ...")
+	log.Info("Start Godbee service port " + port + " ...")
 
 	return grpcServer.Serve(lis)
 }

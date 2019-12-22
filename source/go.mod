@@ -1,4 +1,4 @@
-module github.com/1612898/zpkvservice
+module github.com/zalopay-oss/GodBee
 
 go 1.13
 

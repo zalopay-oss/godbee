@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"github.com/1612898/zpkvservice/pkg/storage/bplustree"
-	"github.com/1612898/zpkvservice/pkg/storage/btree"
 	log "github.com/sirupsen/logrus"
+	"github.com/zalopay-oss/GodBee/pkg/storage/bplustree"
+	"github.com/zalopay-oss/GodBee/pkg/storage/btree"
 )
 
 type GStore interface {

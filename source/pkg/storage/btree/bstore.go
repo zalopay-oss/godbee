@@ -10,9 +10,10 @@ import (
 )
 import (
 	"errors"
-	"github.com/1612898/zpkvservice/pkg/storage"
 	"sync"
 	"unsafe"
+
+	"github.com/zalopay-oss/GodBee/pkg/storage"
 )
 
 type BTreeStore struct {
@@ -21,14 +22,14 @@ type BTreeStore struct {
 
 var instance *BTreeStore
 var once sync.Once
-var keySize, valueSize = 35,1024
+var keySize, valueSize = 35, 1024
 var configFile = "./configs/.configB"
 
 func GetInstance() *BTreeStore {
 	once.Do(func() {
 		instance = &BTreeStore{C.BTreeInit()}
-		tmp,err := storage.SplitConfig(configFile)
-		if err==nil{
+		tmp, err := storage.SplitConfig(configFile)
+		if err == nil {
 			keySize = tmp[0]
 			valueSize = tmp[1]
 		}
@@ -63,7 +64,7 @@ func (b BTreeStore) Get(k string) (string, error) {
 }
 
 func (b BTreeStore) Set(k string, v string) error {
-	if len(k) > keySize || len(v)>keySize {
+	if len(k) > keySize || len(v) > keySize {
 		return errors.New("key or value is oversize")
 	}
 	key := C.CString(k)

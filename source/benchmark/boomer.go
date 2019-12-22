@@ -1,11 +1,12 @@
 package benchmark
 
 import (
-	"github.com/1612898/zpkvservice/pkg/service/api/proto"
-	boomer "github.com/myzhan/boomer"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"strconv"
+
+	boomer "github.com/myzhan/boomer"
+	log "github.com/sirupsen/logrus"
+	service "github.com/zalopay-oss/GodBee/pkg/service/api/proto"
 )
 
 const CONNECT = "connect"
@@ -19,7 +20,7 @@ var managerClient *ManagerClient
 
 type BoomerClient struct {
 	managerClient *ManagerClient
-	client *Client
+	client        *Client
 }
 
 var boomerClient *BoomerClient
@@ -57,7 +58,7 @@ func (boomerClient *BoomerClient) Set() {
 	client := boomerClient.client
 	start := boomer.Now()
 	kv := strconv.Itoa(rand.Int())
-	messageResponse, err := client.Set(service.SetRequest{Key: kv,Value:kv})
+	messageResponse, err := client.Set(service.SetRequest{Key: kv, Value: kv})
 	elapsed := boomer.Now() - start
 
 	client.Close()
@@ -138,9 +139,7 @@ func (boomerClient *BoomerClient) Close() {
 	}
 }
 
-
-
-func (boomerClient *BoomerClient) LoadTask(taskList *[]*boomer.Task, nameTask string, weight int) (error) {
+func (boomerClient *BoomerClient) LoadTask(taskList *[]*boomer.Task, nameTask string, weight int) error {
 	taskPing := boomerClient.createTask(nameTask, weight)
 	*taskList = append(*taskList, taskPing)
 

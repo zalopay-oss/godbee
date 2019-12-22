@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/1612898/zpkvservice/benchmark"
 	boomer "github.com/myzhan/boomer"
 	"github.com/spf13/cobra"
+	"github.com/zalopay-oss/GodBee/benchmark"
 )
 
 var existBoomerCmd = &cobra.Command{
@@ -13,7 +13,7 @@ var existBoomerCmd = &cobra.Command{
 		boomerClient := benchmark.GetBoomerClient()
 		boomerClient.Connect()
 		tasks := make([]*boomer.Task, 0)
-		_ = boomerClient.LoadTask(&tasks,benchmark.EXIST, 1)
+		_ = boomerClient.LoadTask(&tasks, benchmark.EXIST, 1)
 		boomerClient.RunTask(tasks)
 	},
 }

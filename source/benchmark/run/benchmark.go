@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/1612898/zpkvservice/configs"
-	"github.com/1612898/zpkvservice/benchmark/run/cmd"
 	log "github.com/sirupsen/logrus"
+	"github.com/zalopay-oss/GodBee/benchmark/run/cmd"
+	"github.com/zalopay-oss/GodBee/configs"
 
-	"github.com/1612898/zpkvservice/benchmark"
+	"github.com/zalopay-oss/GodBee/benchmark"
 
 	"github.com/spf13/viper"
 )
@@ -13,7 +13,7 @@ import (
 func run() {
 	//load config
 	config := &configs.ServiceConfig{}
-	if err := configs.LoadConfig(); err!=nil{
+	if err := configs.LoadConfig(); err != nil {
 		log.Fatal("Load config: ", err)
 	}
 
