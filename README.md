@@ -85,11 +85,11 @@ make build-server
 - Or run Docker server:  
 
 ```sh
-# Build docker image named "zpkv-server"
-docker build -t zpkv-server .
+# Build docker image named "godbee-server"
+docker build -t godbee-server .
 
 # Run image
-docker run -it --net="host" zpkv-server
+docker run -it --net="host" godbee-server
 ```
 
 ## **Test**  
