@@ -24,12 +24,12 @@
 
 ## **Overview**  
 
-The implementation of Key-Value Store project of ZaloPay fresher program. In this project, we choose B-Tree and B+Tree data structures to organize and manipulate data. Key-Value Storage is written in C++ and Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
+GodBee is the Key-Value Store Service project. In this project, we choose B-Tree and B+Tree data structures to organize and manipulate data. Key-Value Storage is written in C++ and Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
 
 ## **Architecture**  
 
 <div align="center">
-    <img src="images/architecture.png">
+    <img src="images/GodbeeArchitecture.png">
 </div>  
 
 ## **Requirements**  
@@ -116,44 +116,44 @@ make client
 - **Connect** to B/B+ Storage:
 ```sh
 # CONNECT {B | BPLUS}
-KVZP > CONNECT B
+GodBee > CONNECT B
 OK
 ```  
 
 - **Disconnect** to the storage:
 ```sh
 # CLOSE
-KVZP > CLOSE
+GodBee > CLOSE
 OK
 ```
 - **Insert** new Key-Value:
 ```sh
 # SET key value
-KVZP > SET a a
+GodBee > SET a a
 OK
 ```
 - **Get** value from key:
 ```sh
 # GET key
-KVZP > GET a
+GodBee > GET a
 "a"
 ```
 - **Remove** key:
 ```sh
 # {REMOVE|DEL} key
-KVZP > DEL a
+GodBee > DEL a
 OK
 ```
 - Check whether key **exists** in storage or not.
 ```sh
 # EXIST key
-KVZP > EXIST a
+GodBee > EXIST a
 FALSE
 ```
 - Exit program
 ```sh
-KVZP > exit
-Bye bye!!
+GodBee > exit
+Bye bye!! Beeeeee~
 ```  
 
 ### Run unit tests  
