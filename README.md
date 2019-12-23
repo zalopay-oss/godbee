@@ -8,7 +8,6 @@
 </div>  
 
 <!-- TOC -->
-[**ZP Key-Value Store**](#zp-key-value-store)
 - [GodBee](#godbee)
   - [Overview](#overview)
   - [Architecture](#architecture)
@@ -49,7 +48,7 @@ package service;
 
 service KeyValueStoreService {
     rpc Connect(ConnectionRequest) returns (MessageResponse){}
-    rpc CloseConnection (CloseConnectionRequest) returns (MessageResponse) {}
+    rpc Disconnect (DisconnectRequest) returns (MessageResponse) {}
     rpc Get (GetRequest) returns (GetResponse) {}
     rpc Set (SetRequest) returns (MessageResponse) {}
     rpc Remove (RemoveRequest) returns (RemoveResponse) {}

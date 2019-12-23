@@ -102,27 +102,27 @@ func TestZPKVServiceImpl_Connect(t *testing.T) {
 	req = service.ConnectionRequest{}
 	res,err = server.Connect(ctx,&req)
 	if err==nil{
-		t.Error("CloseConnectionfailed, Should got Error")
+		t.Error("Disconnectfailed, Should got Error")
 	}
 }
 
-func TestZPKVServiceImpl_CloseConnection(t *testing.T) {
+func TestZPKVServiceImpl_Disconnect(t *testing.T) {
 	ctx := context.Background()
 	mockService := newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("123",nil)
 	var server = &ServiceImpl{ServiceUtils: mockService}
-	req := service.CloseConnectionRequest{}
+	req := service.DisconnectRequest{}
 
 	/*
 	Case Haven't connect to any storage
 	 */
 	mockService = newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("123",nil)
-	res,err := server.CloseConnection(ctx,&req)
+	res,err := server.Disconnect(ctx,&req)
 	if err!=nil{
-		t.Error("CloseConnectionfailed, got Error ",err.Error())
+		t.Error("Disconnectfailed, got Error ",err.Error())
 	} else if res.GetStatus().GetCode() == 1{
-		t.Error("CloseConnectionfailed, should get Error Store type not Available ")
+		t.Error("Disconnectfailed, should get Error Store type not Available ")
 	}
 
 	/*
@@ -130,12 +130,12 @@ func TestZPKVServiceImpl_CloseConnection(t *testing.T) {
 	*/
 	reqC := service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
-	req = service.CloseConnectionRequest{}
-	res,err = server.CloseConnection(ctx,&req)
+	req = service.DisconnectRequest{}
+	res,err = server.Disconnect(ctx,&req)
 	if err!=nil{
-		t.Error("CloseConnectionfailed, got Error ",err.Error())
+		t.Error("Disconnectfailed, got Error ",err.Error())
 	} else if res.GetStatus().GetCode() != 1{
-		t.Error("CloseConnectionfailed, got internal Error " + res.GetStatus().GetError())
+		t.Error("Disconnectfailed, got internal Error " + res.GetStatus().GetError())
 	}
 
 
@@ -144,12 +144,12 @@ func TestZPKVServiceImpl_CloseConnection(t *testing.T) {
 	*/
 	reqC = service.ConnectionRequest{Type: service.StoreType_BTreeDisk}
 	_,_ = server.Connect(ctx,&reqC)
-	req = service.CloseConnectionRequest{}
-	res,err = server.CloseConnection(ctx,&req)
+	req = service.DisconnectRequest{}
+	res,err = server.Disconnect(ctx,&req)
 	if err!=nil{
-		t.Error("CloseConnectionfailed, got Error ",err.Error())
+		t.Error("Disconnectfailed, got Error ",err.Error())
 	} else if res.GetStatus().GetCode() != 1{
-		t.Error("CloseConnectionfailed, got internal Error " + res.GetStatus().GetError())
+		t.Error("Disconnectfailed, got internal Error " + res.GetStatus().GetError())
 	}
 
 	/*
@@ -158,10 +158,10 @@ func TestZPKVServiceImpl_CloseConnection(t *testing.T) {
 	mockService = newServiceUtilsMock()
 	mockService.On("GetConnID",mock.Anything).Return("",errors.New("error"))
 	server = &ServiceImpl{ServiceUtils: mockService}
-	req = service.CloseConnectionRequest{}
-	res,err = server.CloseConnection(ctx,&req)
+	req = service.DisconnectRequest{}
+	res,err = server.Disconnect(ctx,&req)
 	if err==nil{
-		t.Error("CloseConnectionfailed, Should got Error")
+		t.Error("Disconnectfailed, Should got Error")
 	}
 }
 

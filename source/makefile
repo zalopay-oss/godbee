@@ -6,11 +6,11 @@ server:
 build-server:
 	go build ./cmd/server/
 
-client:
+cli:
 	go build ./cmd/client/ && ./client
 	rm client
 
-build-client:
+build-cli:
 	go build ./cmd/client/
 
 locust:

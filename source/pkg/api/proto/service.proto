@@ -21,7 +21,7 @@ message ConnectionRequest {
     StoreType type = 1;
 }
 
-message CloseConnectionRequest {
+message DisconnectRequest {
 }
 
 message GetRequest {
@@ -57,9 +57,9 @@ message ExistResponse {
 }
 
 service KeyValueStoreService {
-    rpc Connect(ConnectionRequest) returns (MessageResponse){}
+    rpc Connect (ConnectionRequest) returns (MessageResponse) {}
 
-    rpc CloseConnection (CloseConnectionRequest) returns (MessageResponse) {}
+    rpc Disconnect (DisconnectRequest) returns (MessageResponse) {}
 
     rpc Get (GetRequest) returns (GetResponse) {}
 

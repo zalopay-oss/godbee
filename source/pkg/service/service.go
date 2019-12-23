@@ -27,7 +27,7 @@ func (server *ServiceImpl) Connect(ctx context.Context, req *service.ConnectionR
 	}
 }
 
-func (server *ServiceImpl) CloseConnection(ctx context.Context, req *service.CloseConnectionRequest) (*service.MessageResponse, error) {
+func (server *ServiceImpl) Disconnect(ctx context.Context, req *service.DisconnectRequest) (*service.MessageResponse, error) {
 	id, err := server.ServiceUtils.GetConnID(ctx)
 	if err != nil {
 		return nil, err

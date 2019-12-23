@@ -32,7 +32,7 @@ func ExecuteCommand(cli service2.KeyValueStoreServiceClient, command string) boo
 	}
 
 	if isExitCommand(commands[0]) {
-		fmt.Println("Bye bye!! Beeeeeee~")
+		fmt.Println("Bye bye!!! Beeeeeee~")
 		return false
 	}
 
@@ -66,8 +66,8 @@ func ExecuteCommand(cli service2.KeyValueStoreServiceClient, command string) boo
 			if n != 1 {
 				fmt.Println("(error) ERR wrong number of arguments for 'close' command")
 			} else {
-				req := service2.CloseConnectionRequest{}
-				res, err := cli.CloseConnection(context.Background(), &req)
+				req := service2.DisconnectRequest{}
+				res, err := cli.Disconnect(context.Background(), &req)
 				if err != nil {
 					fmt.Println(err)
 				} else {

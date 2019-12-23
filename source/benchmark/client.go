@@ -75,8 +75,8 @@ func (c *Client) Connect(request proto.ConnectionRequest) (*proto.MessageRespons
 	return c.client.Connect(c.ctx, &request)
 }
 
-func (c *Client) Disconnect(request proto.CloseConnectionRequest) (*proto.MessageResponse, error) {
-	return c.client.CloseConnection(c.ctx, &request)
+func (c *Client) Disconnect(request proto.DisconnectRequest) (*proto.MessageResponse, error) {
+	return c.client.Disconnect(c.ctx, &request)
 }
 
 func (c *Client) Get(request proto.GetRequest) (*proto.GetResponse, error) {

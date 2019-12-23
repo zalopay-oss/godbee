@@ -126,7 +126,7 @@ func (boomerClient *BoomerClient) Exist() {
 func (boomerClient *BoomerClient) Close() {
 	client := managerClient.NewClient()
 	start := boomer.Now()
-	kvResponse, err := client.Disconnect(service.CloseConnectionRequest{})
+	kvResponse, err := client.Disconnect(service.DisconnectRequest{})
 	elapsed := boomer.Now() - start
 
 	client.Close()
