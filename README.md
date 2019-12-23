@@ -48,7 +48,7 @@ syntax = "proto3";
 package service;
 
 service KeyValueStoreService {
-    rpc Connect(ConnectionRequest) returns (MessageResponse){}
+    rpc Connect (ConnectionRequest) returns (MessageResponse){}
     rpc Disconnect (DisconnectRequest) returns (MessageResponse) {}
     rpc Get (GetRequest) returns (GetResponse) {}
     rpc Set (SetRequest) returns (MessageResponse) {}
