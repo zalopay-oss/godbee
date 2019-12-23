@@ -60,7 +60,7 @@ service KeyValueStoreService {
 
 ```sh
 # clone project
-git clone https://github.com/zalopay-oss/key-value-store-service.git
+git clone https://github.com/zalopay-oss/godbee.git
 ```  
 
 ## **Run**  
@@ -75,9 +75,6 @@ export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
 - Run server:  
 
 ```sh
-# ./source
-cd source
-
 # Build server
 make build-server
 
@@ -88,9 +85,6 @@ make build-server
 - Or run Docker server:  
 
 ```sh
-# ./source
-cd source
-
 # Build docker image named "zpkv-server"
 docker build -t zpkv-server .
 
@@ -107,9 +101,6 @@ After [run server](#run), you can use GodBee-CLI to send commands to GodBee, and
 **Run CLI**:  
 
 ```sh
-# ./source
-cd source
-
 # Build and run client
 make cli
 ```  
@@ -174,14 +165,11 @@ Bye bye!!! Beeeeee~
 ### Run unit tests  
 
 ```sh
-# ./source
-cd source
 # run test
 make test
 ```  
 
 ## **Benchmark**  
-
 
 P99 overview (miliseconds)
 
