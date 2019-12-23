@@ -1,6 +1,6 @@
 # **GodBee**  
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Coverage Status](https://img.shields.io/badge/coverage-90%25-green) 
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Category](https://img.shields.io/badge/education-ZaloPay%20Lab-blue) ![Coverage Status](https://img.shields.io/badge/coverage-90%25-green) 
 [![version](https://img.shields.io/badge/repo%20status-active-brightgreen)](https://github.com/zalopay-oss/key-value-store-service) [![version](https://img.shields.io/badge/contributors-2-blueviolet)](https://github.com/zalopay-oss/key-value-store-service/graphs/contributors) [![version](https://img.shields.io/badge/open%20issues-0-red)](https://github.com/zalopay-oss/key-value-store-service/issues)
 
 <div align="center">
