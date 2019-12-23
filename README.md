@@ -19,6 +19,7 @@
     - [Test CLI](#test-cli)
     - [Run unit tests](#run-unit-tests)
   - [Benchmark](#benchmark)
+  - [Documentation](#documentation)
   - [Acknowledgements](#acknowledgements)
 
 ## **Overview**  
@@ -171,6 +172,8 @@ make test
 
 ## **Benchmark**  
 
+You can view benchmark results at [here](docs/benchmark.md).  
+
 P99 overview (miliseconds)
 
 | Percentile | Storage | Exist | Get | Remove | Set  |
@@ -182,6 +185,9 @@ P99 overview (miliseconds)
 | 100%       | B-Store | 71    | 59  | 880    | 1000 |
 |            | B+Store | 77    | 75  | 810    | 1000 |
 
+## **Documentation**
+
+- Slide: [B+ Tree](docs/B+tree.pdf), [GodBee](docs/GodBee.pdf)
 
 ## **Acknowledgements**  
 
