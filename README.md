@@ -98,21 +98,26 @@ docker build -t zpkv-server .
 docker run -it --net="host" zpkv-server
 ```
 
-- Run client:  
+## **Test**  
+
+### Test CLI
+
+After [run server](#run), you can use GodBee-CLI to send commands to GodBee, and read the replies sent by the server, directly from the terminal.
+
+**Run CLI**:  
 
 ```sh
 # ./source
 cd source
 
 # Build and run client
-make client
+make cli
 ```  
 
-## **Test**  
-
-### Test CLI
+**Command line usage**:
 
 - **Connect** to B/B+ Storage:
+
 ```sh
 # CONNECT {B | BPLUS}
 GodBee > CONNECT B
@@ -120,39 +125,50 @@ OK
 ```  
 
 - **Disconnect** to the storage:
+
 ```sh
 # CLOSE
 GodBee > CLOSE
 OK
 ```
+
 - **Insert** new Key-Value:
+
 ```sh
 # SET key value
 GodBee > SET a a
 OK
 ```
+
 - **Get** value from key:
+
 ```sh
 # GET key
 GodBee > GET a
 "a"
 ```
+
 - **Remove** key:
+
 ```sh
 # {REMOVE|DEL} key
 GodBee > DEL a
 OK
 ```
+
 - Check whether key **exists** in storage or not.
+
 ```sh
 # EXIST key
 GodBee > EXIST a
 FALSE
 ```
+
 - Exit program
+
 ```sh
 GodBee > exit
-Bye bye!! Beeeeee~
+Bye bye!!! Beeeeee~
 ```  
 
 ### Run unit tests  
@@ -181,4 +197,4 @@ P99 overview (miliseconds)
 
 ## **Acknowledgements**  
 
-Thanks [AJ Pham](https://github.com/phamtai97) for guiding me during the project.  
+Thanks [AJ Pham](https://github.com/phamtai97) for guiding us during the project.  
