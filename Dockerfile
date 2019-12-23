@@ -1,5 +1,5 @@
 FROM golang:latest
-LABEL maintainer="Tran. <tranndc@vng.com.vn>"
+LABEL maintainer="zalopay-oss"
 WORKDIR /server
 COPY go.mod go.sum ./
 RUN go mod download
