@@ -59,7 +59,7 @@ service KeyValueStoreService {
 ## **Build**  
 
 ```sh
-# clone project
+# Clone project
 git clone https://github.com/zalopay-oss/godbee.git
 ```  
 
@@ -165,7 +165,7 @@ Bye bye!!! Beeeeee~
 ### Run unit tests  
 
 ```sh
-# run test
+# Run test
 make test
 ```  
 
