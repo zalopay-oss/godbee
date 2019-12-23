@@ -24,7 +24,7 @@
 
 ## **Overview**  
 
-GodBee is the Key-Value Store Service project. In this project, we choose B-Tree and B+Tree data structures to organize and manipulate data. Key-Value Storage is written in C++ and Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
+GodBee is a Key-Value Store Service project. In this project, we choose B-Tree and B+Tree data structures to organize and manipulate data. Key-Value Storage is written in C++ and Service layer is written in Golang programming language. We use gRPC services to handle requests from client and use CGO to access data from C++ storage.  
 
 ## **Architecture**  
 
