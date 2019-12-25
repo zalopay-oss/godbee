@@ -172,7 +172,13 @@ make test
 
 ## **Benchmark**  
 
-You can view benchmark results at [here](docs/benchmark.md).  
+You can view benchmark results at [here](docs/benchmark.md).
+
+Benchmark system:
+
+- ThinkPad X280
+- CPU: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz
+- 16GiB SODIMM DDR4 2400 MHz
 
 P99 overview (miliseconds)
 

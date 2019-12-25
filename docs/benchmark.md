@@ -1,5 +1,15 @@
 ## **ZPKV-Benchmark**  
 
+Bechmark with Locust and Boomer.
+Run with 1000 users, Hatch rate 250.
+
+Benchmark system:
+
+- ThinkPad X280
+- Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz
+- 2x8GiB SODIMM DDR4 2400 MHz
+- Ubuntu 19.04
+
 ### **1. Set**  
 
 #### **B-Tree**  
