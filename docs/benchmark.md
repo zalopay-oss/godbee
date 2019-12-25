@@ -101,6 +101,7 @@ Benchmark system:
 ### **5. P99**  
 
 P99 overview (miliseconds)
+
 | Percentile | Storage | Exist | Get | Remove | Set  |
 |------------|---------|-------|-----|--------|------|
 | 50%        | B-Store | 20    | 19  | 88     | 110  |
