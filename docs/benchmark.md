@@ -1,4 +1,4 @@
-## **ZPKV-Benchmark**  
+## **GodBee-Benchmark**  
 
 Bechmark with Locust and Boomer.
 Run with 1000 users, Hatch rate 250.
@@ -100,7 +100,7 @@ Benchmark system:
 
 ### **5. P99**  
 
-| Percentile | Storage | Exist | Get | Remove | Set  |
+| Percentile | Storage | Exist (ms) | Get (ms)  | Remove (ms) | Set (ms)  |
 |------------|---------|-------|-----|--------|------|
 | 50%        | B-Store | 20    | 19  | 88     | 110  |
 |            | B+Store | 21    | 20  | 87     | 110  |
