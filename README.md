@@ -196,6 +196,7 @@ P99 overview (miliseconds)
 - Slide: [B+ Tree](docs/B+tree.pdf), [GodBee](docs/GodBee.pdf)
 - Blog:
     - [Implement Key-Value Storage using Golang and C++ pt.1](https://medium.com/zalopay-engineering/cài-đặt-key-value-store-service-bằng-go-và-c-phần-1-storage-565b1a3f7e1b)
+    - [Implement Key-Value Storage using Golang and C++ pt.2](https://medium.com/zalopay-engineering/cài-đặt-key-value-store-service-bằng-go-và-c-phần-2-service-937737ae515e)
 
 ## **Acknowledgements**  
 
