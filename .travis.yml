@@ -1,7 +1,8 @@
 language: go
-
-go:
-  - 1.13.6
+os: linux
+dist: xenial
+sudo: required
+go: 1.13.6
 
 branches:
   only:
@@ -16,14 +17,7 @@ addons:
       - g++-7
       - gcc-7
 
-matrix:
-    include:
-        - os: linux
-          dist: xenial
-          sudo: required
-          go: 1.13.6
-          env: CC="gcc-7" CXX="g++-7" OS="linux" CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread"
-
+env: CC="gcc-7" CXX="g++-7" OS="linux" CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread"
 jobs:
   include:
     - stage: build
