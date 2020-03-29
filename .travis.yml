@@ -27,9 +27,9 @@ matrix:
 jobs:
   include:
     - stage: build
-      script: go build ./cmd/
+      script: go build ./cmd/build
     - stage: test
-      script: go test ./service -v
+      script: go test ./pkg/service -v
     - stage: push-docker-registry
       script:
         - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
