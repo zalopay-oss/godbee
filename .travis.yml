@@ -8,15 +8,22 @@ branches:
     - dev
     - feature/integrate-travisCI  
 
-env:
-  CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread"
-
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - g++-7
+      - gcc-7
+
+matrix:
+    include:
+        - os: linux
+          dist: xenial
+          sudo: required
+          go: 1.13.6
+          env: CC="gcc-7" CXX="g++-7" OS="linux" CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread"
+        - os: osx
 
 jobs:
   include:
