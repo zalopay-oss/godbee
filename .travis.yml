@@ -23,12 +23,11 @@ matrix:
           sudo: required
           go: 1.13.6
           env: CC="gcc-7" CXX="g++-7" OS="linux" CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread"
-        - os: osx
 
 jobs:
   include:
     - stage: build
-      script: go build ./cmd/server
+      script: go build ./cmd/
     - stage: test
       script: go test ./service -v
     - stage: push-docker-registry
