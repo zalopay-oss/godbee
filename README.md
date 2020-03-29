@@ -8,19 +8,19 @@
 </div>  
 
 <!-- TOC -->
-- [GodBee](#godbee)
-  - [Overview](#overview)
-  - [Architecture](#architecture)
-  - [Requirements](#requirements)
-  - [Methods supported](#methods-supported)
-  - [Build](#build)
-  - [Run](#run)
-  - [Test](#test)
+- [**GodBee**](#godbee)
+  - [**Overview**](#overview)
+  - [**Architecture**](#architecture)
+  - [**Requirements**](#requirements)
+  - [**Methods supported**](#methods-supported)
+  - [**Build**](#build)
+  - [**Run**](#run)
+  - [**Test**](#test)
     - [Test CLI](#test-cli)
     - [Run unit tests](#run-unit-tests)
-  - [Benchmark](#benchmark)
-  - [Documentation](#documentation)
-  - [Acknowledgements](#acknowledgements)
+  - [**Benchmark**](#benchmark)
+  - [**Documentation**](#documentation)
+  - [**Acknowledgements**](#acknowledgements)
 
 ## **Overview**  
 
@@ -76,11 +76,8 @@ export CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread
 - Run server:  
 
 ```sh
-# Build server
-make build-server
-
 # Run server
-./server
+./server.sh
 ```  
 
 - Or run Docker server:  
@@ -103,7 +100,7 @@ After [run server](#run), you can use GodBee-CLI to send commands to GodBee, and
 
 ```sh
 # Build and run client
-make cli
+./cli.sh
 ```  
 
 **Command line usage**:
@@ -167,7 +164,7 @@ Bye bye!!! Beeeeee~
 
 ```sh
 # Run test
-make test
+./test.sh
 ```  
 
 ## **Benchmark**  
