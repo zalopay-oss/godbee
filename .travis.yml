@@ -21,9 +21,9 @@ env: CC="gcc-7" CXX="g++-7" OS="linux" CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o 
 jobs:
   include:
     - stage: build
-      script: go build ./cmd/build
+      script: ./build-server
     - stage: test
-      script: go test ./pkg/service -v
+      script: ./test
     - stage: push-docker-registry
       script:
         - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
