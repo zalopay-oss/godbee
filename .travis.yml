@@ -5,7 +5,11 @@ go:
 
 branches:
   only:
-  - feature/integrate-travisCI  
+    - dev
+    - feature/integrate-travisCI  
+
+env:
+  CGO_CXXFLAGS="-g -rdynamic -std=c++17 -o -pthread"
 
 jobs:
   include:
