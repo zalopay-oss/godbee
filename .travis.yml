@@ -28,5 +28,5 @@ jobs:
       script:
         - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         - docker build -t zpx-godbee .
-        - docker tag zpx-cannon $DOCKER_USER/zpx-godbee:latest
+        - docker tag zpx-godbee $DOCKER_USER/zpx-godbee:latest
         - docker push $DOCKER_USER/zpx-godbee:latest
